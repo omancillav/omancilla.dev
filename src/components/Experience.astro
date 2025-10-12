@@ -1,0 +1,21 @@
+---
+import ExperienceItem from './ExperienceItem.astro'
+
+const EXPERIENCE = [
+  {
+    title: 'Flowbite Figma v1.3.0',
+    date: 'Released on December 7th, 2021',
+    description:
+      'All of the pages and components are first designed in Figma and we keep a parity between the two versions even as we update the project.'
+  },
+  {
+    title: 'Flowbite Library v1.2.2',
+    date: 'Released on December 2nd, 2021',
+    description: 'Get started with dozens of web components and interactive elements built on top of Tailwind CSS.'
+  }
+];
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+  {EXPERIENCE.map((experience) => <ExperienceItem {...experience} />)}
+</ol>

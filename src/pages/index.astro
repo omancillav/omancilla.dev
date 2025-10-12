@@ -1,11 +1,53 @@
 ---
-import Welcome from '../components/Welcome.astro'
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Badge from '@/components/Badge.astro'
+import Layout from '../layouts/Layout.astro'
+import Container from '@/components/Container.astro'
+import GitHubIcon from '@/assets/GitHub.astro'
+import LinkedInIcon from '@/assets/LinkedIn.astro'
+import MailIcon from '@/assets/Mail.astro'
+import SuitcaseIcon from '@/assets/Suitcase.astro'
+import SocialPill from '@/components/SocialPill.astro'
+import Experience from '@/components/Experience.astro';
 ---
 
-<Layout>
-  <Welcome />
+<Layout
+  title="Omancilla | Portafolio"
+  description="Hola, soy Omar Mancilla, un desarrollador web y estudiante de ingeniería en desarrollo de software de México. Me especializo en crear soluciones digitales innovadoras."
+>
+  <main>
+    <Container class='py-44 pb-24'>
+      <img src="avatar.webp" alt="avatar omancilla" class="rounded-full aspect-square size-28 mb-8" />
+      <h1 class="text-white text-5xl font-bold flex gap-4 pb-4">
+        Hey, soy Omar Mancilla <Badge>Disponible para trabajar</Badge>
+      </h1>
+      <h2 class="text-2xl opacity-80 text-wrap">
+        <span class="text-yellow-200/90">Desarrollador web </span> y Estudiante de Ingenieria en Desarrollo de Software.
+        <span class="text-green-200/90"> De México 🇲🇽.</span>
+        <span class="opacity-85"> Enfocado en desarrollar soluciones digitales innovadoras. </span>
+      </h2>
+
+      <nav class="flex gap-4 mt-8">
+        <SocialPill href="https://www.linkedin.com/in/omancillav">
+          <LinkedInIcon class="size-5" />
+          LinkedIn
+        </SocialPill>
+        <SocialPill href="https://github.com/omancillav">
+          <GitHubIcon class="size-5" />
+          GitHub
+        </SocialPill>
+        <SocialPill href="mailto:edgarmncllav04@gmail.com">
+          <MailIcon class="size-5" />
+          edgarmncllav04@gmail.com
+        </SocialPill>
+      </nav>
+    </Container>
+
+    <Container>
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-3">
+        <SuitcaseIcon class="size-7" />
+        Experiencia Laboral
+      </h2>
+      <Experience />
+    </Container>
+  </main>
 </Layout>
