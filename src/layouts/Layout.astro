@@ -2,6 +2,7 @@
 import '../styles/global.css'
 import '@fontsource-variable/onest'
 import Header from '@/components/Header.astro'
+import Footer from '@/components/Footer.astro'
 
 const { title, description } = Astro.props;
 ---
@@ -18,17 +19,19 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <div
-      class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+      class="fixed top-0 left-0 z-[-2] h-full w-full bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
     </div>
     <Header />
     <slot />
+    <Footer />
   </body>
 </html>
 
 <style>
   html,
   body {
+    scrollbar-width: thin;
     font-family: "Onest Variable", system-ui, sans-serif;
     margin: 0;
     width: 100%;
@@ -37,5 +40,12 @@ const { title, description } = Astro.props;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduce-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 </style>
