@@ -1,5 +1,5 @@
 ---
-import Badge from '@/components/Badge.astro'
+// import Badge from '@/components/Badge.astro'
 import Layout from '../layouts/Layout.astro'
 import Container from '@/components/Container.astro'
 import GitHubIcon from '@/assets/GitHub.astro'
@@ -16,33 +16,36 @@ import Projects from '@/components/Projects.astro';
   title="Omancilla | Portafolio"
   description="Hola, soy Omar Mancilla, un desarrollador web y estudiante de ingeniería en desarrollo de software de México. Me especializo en crear soluciones digitales innovadoras."
 >
-  <main class="px-4 mx-auto max-w-[740px]">
-    <Container classname="py-24 pb-32">
-      <img src="avatar.webp" alt="avatar omancilla" class="rounded-full w-18 mb-8" />
-      <h1 class="text-white text-3xl lg:text-5xl font-bold flex justify-between gap-2 md:gap-4 pb-6 lg:pb-10">
-        Hey, soy Omar Mancilla
-        <Badge>Disponible para trabajar</Badge>
-      </h1>
-      <h2 class="text-xl opacity-80 text-pretty">
-        <span class="text-yellow-200/90">Desarrollador web </span> y Estudiante de Ingenieria en Desarrollo de Software.
-        <span class="text-green-200/90"> De México 🇲🇽.</span>
-        <span class="opacity-85"> Enfocado en desarrollar soluciones digitales innovadoras. </span>
-      </h2>
-
-      <nav class="flex gap-2 md:gap-4 mt-8 flex-wrap">
-        <SocialPill href="https://www.linkedin.com/in/omancilla">
-          <LinkedInIcon class="size-4 md:size-6" />
-          LinkedIn
-        </SocialPill>
-        <SocialPill href="https://github.com/omancillav">
-          <GitHubIcon class="size-4 md:size-6" />
-          GitHub
-        </SocialPill>
-        <SocialPill href="mailto:edgarmncllav04@gmail.com">
-          <MailIcon class="size-4 md:size-6" />
-          edgarmncllav04@gmail.com
-        </SocialPill>
-      </nav>
+  <main class="px-4 mx-auto w-full max-w-[760px]">
+    <Container id="inicio" classname="min-h-svh flex flex-col justify-center items-center">
+      <div>
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8">
+          <img src="avatar.webp" alt="avatar omancilla" class="rounded-full size-28 my-auto" />
+          <!-- <Badge>Disponible para trabajar</Badge> -->
+          <h1 class="text-white text-3xl md:text-5xl font-bold flex justify-between gap-2 md:gap-4">
+            Hey, soy <span class="text-cyan-500/90">Omar Mancilla</span>
+          </h1>
+        </div>
+        <h2 class="text-xl opacity-80 text-pretty">
+          <span class="text-yellow-200">Desarrollador web </span> y Estudiante de Ingenieria en Desarrollo de Software.
+          <span class="opacity-85"> Enfocado en desarrollar soluciones digitales innovadoras que mejoren la experiencia de usuario. </span>
+          <span class="text-green-300"> De México 🇲🇽.</span>
+        </h2>
+        <nav class="flex gap-2 md:gap-4 mt-8 flex-wrap">
+          <SocialPill href="https://www.linkedin.com/in/omancilla">
+            <LinkedInIcon class="size-4 md:size-5" />
+            LinkedIn
+          </SocialPill>
+          <SocialPill href="https://github.com/omancillav">
+            <GitHubIcon class="size-4 md:size-5" />
+            GitHub
+          </SocialPill>
+          <SocialPill href="mailto:edgarmncllav04@gmail.com">
+            <MailIcon class="size-4 md:size-5" />
+            edgarmncllav04@gmail.com
+          </SocialPill>
+        </nav>
+      </div>
     </Container>
 
     <Container id="experience">
