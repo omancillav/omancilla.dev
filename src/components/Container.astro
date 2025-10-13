@@ -1,7 +1,11 @@
 ---
-const { classname, id } = Astro.props;
+const { classname, id, title, icon: Icon } = Astro.props;
 ---
 
 <section class={`${classname} py-16`} id={id}>
+  <h2 class="text-3xl font-semibold mb-8 flex items-center gap-3">
+    {Icon && <Icon class="size-7" />}
+    {title}
+  </h2>
   <slot />
 </section>
