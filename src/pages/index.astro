@@ -8,7 +8,8 @@ import SuitcaseIcon from '@/assets/Suitcase.astro'
 import CodeIcon from '@/assets/Code.astro'
 import SocialPill from '@/components/Pill.astro'
 import Experience from '@/components/Experience.astro'
-import Projects from '@/components/Projects.astro';
+import Projects from '@/components/Projects.astro'
+import Badge from '@/components/Badge.astro';
 ---
 
 <Layout
@@ -18,15 +19,27 @@ import Projects from '@/components/Projects.astro';
   <main class="px-4 mx-auto w-full max-w-[900px]">
     <Container id="inicio" classname="min-h-screen flex flex-col justify-center items-center">
       <div>
-        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8">
-          <img src="avatar.webp" alt="avatar omancilla" class="rounded-full size-32 my-auto" />
-          <h1 class="text-white text-3xl md:text-5xl font-bold flex justify-between gap-2 md:gap-4">
-            Hey, soy <span class="text-cyan-500/90">Omar Mancilla</span>
-          </h1>
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6 md:gap-8">
+          <div class="flex items-center gap-4 md:gap-0">
+            <img src="avatar.webp" alt="avatar omancilla" class="rounded-full size-24 md:size-32 my-auto" />
+            <div class="md:hidden">
+              <Badge>Desarrollador FullStack</Badge>
+            </div>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="hidden md:block">
+              <Badge>Desarrollador FullStack</Badge>
+            </div>
+            <h1 class="text-white text-3xl md:text-5xl font-bold gap-6 md:gap-4">
+              Hey, soy <span class="text-cyan-500/90">Omar Mancilla</span>
+            </h1>
+          </div>
         </div>
         <h2 class="text-xl opacity-80 text-pretty">
           <span class="text-yellow-200">Desarrollador web </span> y Estudiante de Ingenieria en Desarrollo de Software.
-          <span class="opacity-85"> Enfocado en desarrollar soluciones digitales innovadoras que mejoren la experiencia de usuario. </span>
+          <span class="opacity-85">
+            Enfocado en desarrollar soluciones digitales innovadoras que mejoren la experiencia de usuario.
+          </span>
           <span class="text-green-300"> De México 🇲🇽.</span>
         </h2>
         <nav class="flex gap-3 md:gap-4 mt-8 flex-wrap">
