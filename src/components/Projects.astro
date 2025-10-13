@@ -1,0 +1,56 @@
+---
+import TailwindIcon from '@/assets/Tailwind.astro'
+import NextIcon from '@/assets/NextJS.astro'
+
+const tags = {
+  Tailwind: {
+    name: 'TailwindCSS',
+    class: 'bg-[#003159] text-white',
+    icon: TailwindIcon
+  },
+  Next: {
+    name: 'NextJS',
+    class: 'bg-black text-white',
+    icon: NextIcon
+  }
+}
+
+const projects = [
+  {
+    title: 'Cutfly',
+    description: 'Acortador de urls gratuito y de código abierto.',
+    link: 'https://cutfly.vercel.app',
+    github: 'https://github.com/omancillav/cutfly',
+    image: 'cutfly.webp',
+    tags: [tags.Next, tags.Tailwind]
+  },
+  {
+    title: 'Vet Sync',
+    description: 'Aplicación web para gestionar citas y expedientes médicos de mascotas. ',
+    link: 'https://vetsync.vercel.app',
+    github: 'https://github.com/omancillav/vet-sync-app',
+    image: 'vetsync.webp',
+    tags: [tags.Tailwind]
+  }
+];
+---
+
+{
+  projects.map(({ title, description, tags, link, github, image }) => (
+    <article class="pb-12">
+      <h3 class="text-2xl font-semibold text-yellow-200/90 mb-2">{title}</h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-2 mb-4">
+        {tags.map((tag) => (
+          <li>
+            <span class={`${tag.class} flex items-center gap-2 rounded-full text-sm py-1 px-2`}>
+              <tag.icon class="size-6" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <img class="rounded shadow-2xl shadow-white/10" src={image} alt={`Imagen del proyecto ${title}`} />
+    </article>
+  ))
+}
