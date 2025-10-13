@@ -1,6 +1,9 @@
 ---
 import TailwindIcon from '@/assets/Tailwind.astro'
 import NextIcon from '@/assets/NextJS.astro'
+import GitHubIcon from '@/assets/GitBrand.astro'
+import LinkIcon from '@/assets/Link.astro'
+import Pill from './Pill.astro'
 
 const tags = {
   Tailwind: {
@@ -50,7 +53,17 @@ const projects = [
           </li>
         ))}
       </ul>
-      <img class="rounded shadow-2xl shadow-white/10" src={image} alt={`Imagen del proyecto ${title}`} />
+      <img class="rounded-lg shadow-2xl shadow-white/10" src={image} alt={`Imagen del proyecto ${title}`} />
+      <div class="flex items-center gap-3 mt-4">
+        <Pill href={github} class="rounded-xl">
+          <GitHubIcon class="size-4 md:size-5" />
+          Ver Código
+        </Pill>
+        <Pill href={link} class="rounded-xl">
+          <LinkIcon class="size-4 md:size-5" />
+          Preview
+        </Pill>
+      </div>
     </article>
   ))
 }
