@@ -2,7 +2,7 @@
 import SocialPill from './SocialPill.astro'
 import ArrowRightIcon from '@/assets/Arrow.astro'
 
-const { title, description, date } = Astro.props;
+const { title, description, date, link } = Astro.props;
 ---
 
 <li class="mb-10 ms-7">
@@ -30,10 +30,12 @@ const { title, description, date } = Astro.props;
   <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400 text-pretty">
     {description}
   </p>
-  <a href="https://whatsbotsm.com" target="_blank" rel="noreferrer noopeners">
-    <SocialPill>
-      Más Información
-      <ArrowRightIcon class="size-4 md:size-5" />
-    </SocialPill>
-  </a>
+  {
+    link && (
+      <SocialPill href={link}>
+        Más Información
+        <ArrowRightIcon class="size-4 md:size-5" />
+      </SocialPill>
+    )
+  }
 </li>
