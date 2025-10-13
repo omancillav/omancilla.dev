@@ -19,46 +19,50 @@ const tags = {
 }
 const projects = [
   {
-    title: 'Cutfly - Acortador de URLs Open Source',
-    description:
-      'Acortador de urls gratuito y de código abierto. Mas y mas de 1000 usuarios lo usan diariamente. mas texto para probar el diseño.',
-    link: 'https://cutfly.vercel.app',
-    github: 'https://github.com/omancillav/cutfly',
-    image: 'cutfly.webp',
-    tags: [tags.NEXT, tags.TAILWIND]
-  },
-  {
     title: 'Vet Sync - Gestión de citas veterinarias para mascotas',
-    description: 'Aplicación web para gestionar citas y expedientes médicos de mascotas. ',
+    description:
+      'Vet Sync es una aplicación web desarrollada con React y Tailwind CSS para gestionar clínicas veterinarias. Permite agendar citas, administrar expedientes de mascotas y controlar accesos por roles con una interfaz moderna y responsive.',
     link: 'https://vetsync.vercel.app',
     github: 'https://github.com/omancillav/vet-sync-app',
     image: 'vetsync.webp',
     tags: [tags.TAILWIND]
+  },
+  {
+    title: 'Cutfly - Acortador de URLs Open Source',
+    description:
+      'Acortador de URLs gratuito y de código abierto construido con Next.js y TypeScript. Permite crear enlaces cortos personalizados, rastrear clics, y gestionar todos tus enlaces desde un dashboard intuitivo.',
+    link: 'https://cutfly.vercel.app',
+    github: 'https://github.com/omancillav/cutfly',
+    image: 'cutfly.webp',
+    tags: [tags.NEXT, tags.TAILWIND]
   }
 ];
 ---
 
 <div class="flex flex-col gap-y-16">
   {
-    projects.map(({ image, title, description, tags, link, github }) => (
-      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 w-ful">
+    projects.map(({ image, title, description, tags, link, github }, index) => (
+      <article
+        class={`flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 w-ful ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+      >
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-            <img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-full transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+            <img
+              alt="Recién llegado vs 5 años en Nueva Zelanda"
+              class="object-cover object-top w-full h-full transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
           </div>
         </div>
 
         <div class="w-full md:w-1/2">
-          <h3 class="text-2xl font-bold text-gray-100">
-            {title}
-          </h3>
+          <h3 class="text-2xl font-bold text-gray-100">{title}</h3>
           <div class="flex flex-wrap mt-2">
             <ul class="flex flex-row mb-2 gap-x-2">
               {tags.map((tag) => (
                 <li>
-                  <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-                  >
+                  <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
                     <tag.icon class="size-4" />
                     {tag.name}
                   </span>
@@ -71,14 +75,13 @@ const projects = [
               {github && (
                 <Pill href={github}>
                   <GitHub class="size-6" />
-              Code
-
+                  Code
                 </Pill>
               )}
               {link && (
                 <Pill href={link}>
                   <Link class="size-4" />
-              Preview
+                  Preview
                 </Pill>
               )}
             </footer>
