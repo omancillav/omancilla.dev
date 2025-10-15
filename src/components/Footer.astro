@@ -1,15 +1,16 @@
 ---
-import Mail from '@/assets/Mail.astro';
+import Mail from "@/assets/Mail.astro";
 ---
 
-<footer class="rounded-lg shadow m-4 backdrop-blur-lg w-full max-w-[720px] mx-auto mb-10">
+<footer class="rounded-lg shadow m-4 backdrop-blur-lg w-full max-w-[900px] mx-auto mb-10">
   <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
     <span class="text-sm sm:text-center text-white/90"> © 2025 Omancilla. Casi todos los derechos reservados </span>
     <ul class="flex items-center mt-3 text-sm font-medium text-white/90 sm:mt-0">
       <li>
         <a href="mailto:edgarmncllav04@gmail.com" class="flex items-center gap-2">
+          <Mail class="size-[18px] md:hidden" />
           Contacto
-          <Mail class="size-[18px]" />
+          <Mail class="size-[18px] hidden md:block" />
         </a>
       </li>
     </ul>
