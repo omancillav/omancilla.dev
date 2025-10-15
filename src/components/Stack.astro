@@ -13,6 +13,7 @@ import CSSIcon from "@/assets/CSS.astro";
 import ReactIcon from "@/assets/React.astro";
 import AstroIcon from "@/assets/Astro.astro";
 import CodeIcon from "@/assets/Code.astro";
+import StackCard from "./StackCard.astro";
 
 const backend = [
   {
@@ -74,31 +75,24 @@ const frontend = [
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-  <article class="w-full text-center border border-sky-700 rounded-xl py-6 px-3">
-    <h3 class="text-2xl font-semibold mb-6">Backend</h3>
-    <div class="grid grid-cols-3 gap-y-10 gap-x-4">
-      {
-        backend.map(({ name, icon: Icon }) => (
-          <div class="flex flex-col items-center gap-3 text-center justify-center">
-            <Icon class="size-10" />
-            <span class="text-sm">{name}</span>
-          </div>
-        ))
-      }
-    </div>
-  </article>
-
-  <article class="w-full text-center border border-sky-700 rounded-xl py-6 px-3">
-    <h3 class="text-2xl font-semibold mb-6">Frontend</h3>
-    <div class="grid grid-cols-3 gap-y-10 gap-x-4">
-      {
-        frontend.map(({ name, icon: Icon }) => (
-          <div class="flex flex-col items-center gap-3 text-center justify-center">
-            <Icon class="size-10" />
-            <span class="text-sm">{name}</span>
-          </div>
-        ))
-      }
-    </div>
-  </article>
+  <StackCard title="Backend">
+    {
+      backend.map(({ name, icon: Icon }) => (
+        <div class="flex flex-col items-center gap-3 text-center justify-center">
+          <Icon class="size-10" />
+          <span class="text-sm">{name}</span>
+        </div>
+      ))
+    }
+  </StackCard>
+  <StackCard title="Frontend">
+    {
+      frontend.map(({ name, icon: Icon }) => (
+        <div class="flex flex-col items-center gap-3 text-center justify-center">
+          <Icon class="size-10" />
+          <span class="text-sm">{name}</span>
+        </div>
+      ))
+    }
+  </StackCard>
 </div>
