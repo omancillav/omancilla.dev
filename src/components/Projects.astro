@@ -9,6 +9,8 @@ import NodeIcon from '@/assets/NodeJS.astro'
 import ExpressIcon from '@/assets/Express.astro'
 import JWTIcon from '@/assets/JWT.astro'
 import TypeScriptIcon from '@/assets/TypeScript.astro'
+import VercelIcon from '@/assets/Vercel.astro'
+import TursoIcon from '@/assets/Turso.astro'
 
 import Link from '@/assets/Link.astro'
 import Pill from './Pill.astro'
@@ -56,8 +58,18 @@ const tags = {
   },
   TYPESCRIPT: {
     name: 'TypeScript',
-    class: 'bg-blue-700 text-white',
+    class: 'bg-blue-900 text-white',
     icon: TypeScriptIcon
+  },
+  VERCEL: {
+    name: 'Vercel',
+    class: 'bg-black text-white',
+    icon: VercelIcon
+  },
+  TURSO: {
+    name: 'Turso',
+    class: 'bg-teal-800 text-white',
+    icon: TursoIcon
   }
 }
 const projects = [
@@ -77,7 +89,7 @@ const projects = [
     link: 'https://cutfly.vercel.app',
     github: 'https://github.com/omancillav/cutfly',
     image: 'cutfly.webp',
-    tags: [tags.NEXT, tags.TAILWIND, tags.SHADCN]
+    tags: [tags.TYPESCRIPT, tags.NEXT, tags.TAILWIND, tags.SHADCN, tags.TURSO, tags.VERCEL]
   }
 ];
 ---
