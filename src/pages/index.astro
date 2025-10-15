@@ -3,9 +3,12 @@ import Layout from '../layouts/Layout.astro'
 import Container from '@/components/Container.astro'
 import SuitcaseIcon from '@/assets/Suitcase.astro'
 import CodeIcon from '@/assets/Code.astro'
+import BracesIcon from '@/assets/Braces.astro'
 import Presentation from '@/components/Presentation.astro'
 import Experience from '@/components/Experience.astro'
-import Projects from '@/components/Projects.astro';
+import Projects from '@/components/Projects.astro'
+import Stack from '@/components/Stack.astro'
+
 ---
 
 <Layout
@@ -23,6 +26,10 @@ import Projects from '@/components/Projects.astro';
 
     <Container id="projects" title="Proyectos" icon={CodeIcon}>
       <Projects />
+    </Container>
+
+    <Container id="stack" title="Stack Tecnológico" icon={BracesIcon}>
+      <Stack />
     </Container>
   </main>
 </Layout>

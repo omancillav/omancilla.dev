@@ -1,5 +1,5 @@
 ---
-import GitHub from '@/assets/GitHub.astro'
+import GitHub from '@/assets/GitBrand.astro'
 import NextJS from '@/assets/NextJS.astro'
 import Tailwind from '@/assets/Tailwind.astro'
 import Link from '@/assets/Link.astro'
@@ -30,7 +30,7 @@ const projects = [
   {
     title: 'Cutfly - Acortador de URLs Open Source',
     description:
-      'Acortador de URLs gratuito y de código abierto construido con Next.js y TypeScript. Permite crear enlaces cortos personalizados, rastrear clics, y gestionar todos tus enlaces desde un dashboard intuitivo.',
+      'Acortador de URLs gratuito y de código abierto construido con Next.js y TypeScript. Permite crear enlaces cortos personalizados, rastrear clicks, y gestionar todos tus enlaces desde un dashboard intuitivo.',
     link: 'https://cutfly.vercel.app',
     github: 'https://github.com/omancillav/cutfly',
     image: 'cutfly.webp',
@@ -72,16 +72,16 @@ const projects = [
 
             <div class="mt-2 text-gray-400">{description}</div>
             <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <Pill href={github}>
-                  <GitHub class="size-6" />
-                  Code
-                </Pill>
-              )}
               {link && (
                 <Pill href={link}>
-                  <Link class="size-4" />
+                  <Link class="size-5" />
                   Preview
+                </Pill>
+              )}
+              {github && (
+                <Pill href={github}>
+                  <GitHub class="size-5" />
+                  Code
                 </Pill>
               )}
             </footer>
