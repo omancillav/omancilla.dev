@@ -10,6 +10,16 @@ export default [
   ...tseslint.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
+    files: ['**/*.astro'],
+    languageOptions: {
+      parser: eslintPluginAstro.parser,
+      parserOptions: {
+        parser: tseslint.parser,
+        extraFileExtensions: ['.astro']
+      }
+    }
+  },
+  {
     rules: {
       // Standard JS Rules - https://standardjs.com/rules
 

@@ -6,9 +6,18 @@ interface Props {
 }
 ---
 
-<article class="w-full text-center border border-blue-900 rounded-xl py-6 px-3 bg-slate-400/5">
-  <h3 class="text-2xl font-semibold mb-10">{title}</h3>
-  <div class="grid grid-cols-3 gap-y-8 gap-x-4">
-    <slot />
+<article class="w-full h-full text-center border border-blue-900 rounded-xl flex flex-col">
+  <div class="bg-slate-800/80 py-4 px-6 rounded-t-xl flex items-center justify-between gap-4 relative">
+    <h3 class="text-xl font-semibold">{title}</h3>
+    <div class="flex gap-2 left-4">
+      <span class="flex size-3.5 bg-red-500 rounded-full"></span>
+      <span class="flex size-3.5 bg-yellow-500 rounded-full"></span>
+      <span class="flex size-3.5 bg-green-500 rounded-full"></span>
+    </div>
+  </div>
+  <div class="flex-1 bg-gradient-to-br from-slate-900/20 to-slate-400/15 backdrop-blur-sm rounded-b-xl">
+    <div class="grid grid-cols-3 gap-y-8 gap-x-4 py-8 px-3">
+      <slot />
+    </div>
   </div>
 </article>
