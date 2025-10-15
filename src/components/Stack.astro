@@ -12,6 +12,12 @@ import HTMLIcon from "@/assets/Html5.astro";
 import CSSIcon from "@/assets/CSS.astro";
 import ReactIcon from "@/assets/React.astro";
 import AstroIcon from "@/assets/Astro.astro";
+import MySQLIcon from "@/assets/MySQL.astro";
+import PostgreSQLIcon from "@/assets/Postgres.astro";
+import MongoDBIcon from "@/assets/Mongo.astro";
+import SQLiteIcon from "@/assets/SQLite.astro";
+import FirebaseIcon from "@/assets/Firebase.astro";
+import SupabaseIcon from "@/assets/Supabase.astro";
 import CodeIcon from "@/assets/Code.astro";
 import StackCard from "./StackCard.astro";
 
@@ -72,6 +78,61 @@ const frontend = [
     icon: TailwindIcon,
   },
 ];
+
+const database = [
+  {
+    name: "MySQL",
+    icon: MySQLIcon,
+  },
+  {
+    name: "PostgreSQL",
+    icon: PostgreSQLIcon,
+  },
+  {
+    name: "MongoDB",
+    icon: MongoDBIcon,
+  },
+  {
+    name: "SQLite",
+    icon: SQLiteIcon,
+  },
+  {
+    name: "Firebase",
+    icon: FirebaseIcon,
+  },
+  {
+    name: "Supabase",
+    icon: SupabaseIcon,
+  },
+];
+
+const tools = [
+  {
+    name: "Git",
+    icon: CodeIcon,
+  },
+  {
+    name: "GitHub",
+    icon: CodeIcon,
+  },
+  {
+    name: "VS Code",
+    icon: CodeIcon,
+  },
+  {
+    name: "Postman",
+    icon: CodeIcon,
+  },
+  {
+    name: "npm",
+    icon: CodeIcon,
+  },
+
+  {
+    name: "Vercel",
+    icon: CodeIcon,
+  },
+];
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -88,6 +149,26 @@ const frontend = [
   <StackCard title="Frontend">
     {
       frontend.map(({ name, icon: Icon }) => (
+        <div class="flex flex-col items-center gap-3 text-center justify-center">
+          <Icon class="size-10" />
+          <span class="text-sm">{name}</span>
+        </div>
+      ))
+    }
+  </StackCard>
+  <StackCard title="Database">
+    {
+      database.map(({ name, icon: Icon }) => (
+        <div class="flex flex-col items-center gap-3 text-center justify-center">
+          <Icon class="size-10" />
+          <span class="text-sm">{name}</span>
+        </div>
+      ))
+    }
+  </StackCard>
+  <StackCard title="Tools">
+    {
+      tools.map(({ name, icon: Icon }) => (
         <div class="flex flex-col items-center gap-3 text-center justify-center">
           <Icon class="size-10" />
           <span class="text-sm">{name}</span>
