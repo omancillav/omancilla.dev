@@ -2,6 +2,14 @@
 import GitHub from '@/assets/GitBrand.astro'
 import NextJS from '@/assets/NextJS.astro'
 import Tailwind from '@/assets/Tailwind.astro'
+import ReactIcon from '@/assets/React.astro'
+import ShadcnIcon from '@/assets/Shadcn.astro'
+import SupabaseIcon from '@/assets/Supabase.astro'
+import NodeIcon from '@/assets/NodeJS.astro'
+import ExpressIcon from '@/assets/Express.astro'
+import JWTIcon from '@/assets/JWT.astro'
+import TypeScriptIcon from '@/assets/TypeScript.astro'
+
 import Link from '@/assets/Link.astro'
 import Pill from './Pill.astro'
 
@@ -15,6 +23,41 @@ const tags = {
     name: 'Tailwind CSS',
     class: 'bg-[#003159] text-white',
     icon: Tailwind
+  },
+  REACT: {
+    name: 'React',
+    class: 'bg-sky-700/90 text-slate-100',
+    icon: ReactIcon
+  },
+  SHADCN: {
+    name: 'shadcn',
+    class: 'bg-black text-white',
+    icon: ShadcnIcon
+  },
+  SUPABASE: {
+    name: 'Supabase',
+    class: 'bg-emerald-800 text-white',
+    icon: SupabaseIcon
+  },
+  NODE: {
+    name: 'Node.js',
+    class: 'bg-teal-900 text-white',
+    icon: NodeIcon
+  },
+  EXPRESS: {
+    name: 'Express.js',
+    class: 'bg-gray-800 text-white',
+    icon: ExpressIcon
+  },
+  JWT: {
+    name: 'JWT',
+    class: 'bg-cyan-700 text-white',
+    icon: JWTIcon
+  },
+  TYPESCRIPT: {
+    name: 'TypeScript',
+    class: 'bg-blue-700 text-white',
+    icon: TypeScriptIcon
   }
 }
 const projects = [
@@ -25,7 +68,7 @@ const projects = [
     link: 'https://vetsync.vercel.app',
     github: 'https://github.com/omancillav/vet-sync-app',
     image: 'vetsync.webp',
-    tags: [tags.TAILWIND]
+    tags: [tags.REACT, tags.TAILWIND, tags.SHADCN, tags.SUPABASE, tags.NODE, tags.EXPRESS, tags.JWT]
   },
   {
     title: 'Cutfly - Acortador de URLs Open Source',
@@ -34,7 +77,7 @@ const projects = [
     link: 'https://cutfly.vercel.app',
     github: 'https://github.com/omancillav/cutfly',
     image: 'cutfly.webp',
-    tags: [tags.NEXT, tags.TAILWIND]
+    tags: [tags.NEXT, tags.TAILWIND, tags.SHADCN]
   }
 ];
 ---
@@ -59,10 +102,10 @@ const projects = [
         <div class="w-full md:w-1/2">
           <h3 class="text-2xl font-bold text-gray-100">{title}</h3>
           <div class="flex flex-wrap mt-2">
-            <ul class="flex flex-row mb-2 gap-x-2">
+            <ul class="flex flex-row mb-2 gap-2 flex-wrap">
               {tags.map((tag) => (
                 <li>
-                  <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
+                  <span class={`flex items-center gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
                     <tag.icon class="size-4" />
                     {tag.name}
                   </span>
