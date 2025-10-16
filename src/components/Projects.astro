@@ -11,6 +11,9 @@ import JWTIcon from '@/assets/JWT.astro'
 import TypeScriptIcon from '@/assets/TypeScript.astro'
 import VercelIcon from '@/assets/Vercel.astro'
 import TursoIcon from '@/assets/Turso.astro'
+import JavaScriptIcon from '@/assets/JavaScript.astro'
+import Html5 from '@/assets/Html5.astro'
+import CSS from '@/assets/CSS.astro'
 
 import Link from '@/assets/Link.astro'
 import Pill from './Pill.astro'
@@ -70,6 +73,21 @@ const tags = {
     name: 'Turso',
     class: 'bg-teal-800 text-white',
     icon: TursoIcon
+  },
+  HTML: {
+    name: 'HTML',
+    class: 'bg-orange-600 text-white',
+    icon: Html5
+  },
+  CSS: {
+    name: 'CSS',
+    class: 'bg-blue-800 text-white',
+    icon: CSS
+  },
+  JAVASCRIPT: {
+    name: 'JavaScript',
+    class: 'bg-yellow-300 text-black',
+    icon: JavaScriptIcon
   }
 }
 const projects = [
@@ -90,6 +108,15 @@ const projects = [
     github: 'https://github.com/omancillav/cutfly',
     image: 'cutfly.webp',
     tags: [tags.TYPESCRIPT, tags.NEXT, tags.TAILWIND, tags.SHADCN, tags.TURSO, tags.VERCEL]
+  },
+  {
+    title: 'Donly - Todo List App',
+    description:
+      'Donly es una aplicación de lista de tareas construida con HTML, CSS y JavaScript. Permite a los usuarios crear, editar, eliminar y marcar tareas como completadas de manera sencilla, con una interfaz intuitiva y responsiva.',
+    link: 'https://donly.vercel.app',
+    github: 'https://github.com/omancillav/donly',
+    image: 'donly.webp',
+    tags: [tags.JAVASCRIPT, tags.HTML, tags.CSS]
   }
 ];
 ---
