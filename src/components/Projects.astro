@@ -1,137 +1,21 @@
 ---
 import GitHub from '@/assets/GitBrand.astro'
-import NextJS from '@/assets/NextJS.astro'
-import Tailwind from '@/assets/Tailwind.astro'
-import ReactIcon from '@/assets/React.astro'
-import ShadcnIcon from '@/assets/Shadcn.astro'
-import SupabaseIcon from '@/assets/Supabase.astro'
-import NodeIcon from '@/assets/NodeJS.astro'
-import ExpressIcon from '@/assets/Express.astro'
-import JWTIcon from '@/assets/JWT.astro'
-import TypeScriptIcon from '@/assets/TypeScript.astro'
-import VercelIcon from '@/assets/Vercel.astro'
-import TursoIcon from '@/assets/Turso.astro'
-import JavaScriptIcon from '@/assets/JavaScript.astro'
-import Html5 from '@/assets/Html5.astro'
-import CSS from '@/assets/CSS.astro'
-
 import Link from '@/assets/Link.astro'
 import Pill from './Pill.astro'
-
-const tags = {
-  NEXT: {
-    name: 'Next.js',
-    class: 'bg-black text-white',
-    icon: NextJS
-  },
-  TAILWIND: {
-    name: 'Tailwind CSS',
-    class: 'bg-[#003159] text-white',
-    icon: Tailwind
-  },
-  REACT: {
-    name: 'React',
-    class: 'bg-sky-700/90 text-slate-100',
-    icon: ReactIcon
-  },
-  SHADCN: {
-    name: 'shadcn',
-    class: 'bg-black text-white',
-    icon: ShadcnIcon
-  },
-  SUPABASE: {
-    name: 'Supabase',
-    class: 'bg-emerald-800 text-white',
-    icon: SupabaseIcon
-  },
-  NODE: {
-    name: 'Node.js',
-    class: 'bg-teal-900 text-white',
-    icon: NodeIcon
-  },
-  EXPRESS: {
-    name: 'Express.js',
-    class: 'bg-gray-800 text-white',
-    icon: ExpressIcon
-  },
-  JWT: {
-    name: 'JWT',
-    class: 'bg-cyan-700 text-white',
-    icon: JWTIcon
-  },
-  TYPESCRIPT: {
-    name: 'TypeScript',
-    class: 'bg-blue-900 text-white',
-    icon: TypeScriptIcon
-  },
-  VERCEL: {
-    name: 'Vercel',
-    class: 'bg-black text-white',
-    icon: VercelIcon
-  },
-  TURSO: {
-    name: 'Turso',
-    class: 'bg-teal-800 text-white',
-    icon: TursoIcon
-  },
-  HTML: {
-    name: 'HTML',
-    class: 'bg-orange-600 text-white',
-    icon: Html5
-  },
-  CSS: {
-    name: 'CSS',
-    class: 'bg-blue-800 text-white',
-    icon: CSS
-  },
-  JAVASCRIPT: {
-    name: 'JavaScript',
-    class: 'bg-yellow-300 text-black',
-    icon: JavaScriptIcon
-  }
-}
-const projects = [
-  {
-    title: 'Vet Sync - Gestión de citas veterinarias para mascotas',
-    description:
-      'Vet Sync es una aplicación web desarrollada con React y Tailwind CSS para gestionar clínicas veterinarias. Permite agendar citas, administrar expedientes de mascotas y controlar accesos por roles con una interfaz moderna y responsive.',
-    link: 'https://vetsync.vercel.app',
-    github: 'https://github.com/omancillav/vet-sync-app',
-    image: 'vetsync.webp',
-    tags: [tags.REACT, tags.TAILWIND, tags.SHADCN, tags.SUPABASE, tags.NODE, tags.EXPRESS, tags.JWT]
-  },
-  {
-    title: 'Cutfly - Acortador de URLs Open Source',
-    description:
-      'Acortador de URLs gratuito y de código abierto construido con Next.js y TypeScript. Permite crear enlaces cortos personalizados, rastrear clicks, y gestionar todos tus enlaces desde un dashboard intuitivo.',
-    link: 'https://cutfly.vercel.app',
-    github: 'https://github.com/omancillav/cutfly',
-    image: 'cutfly.webp',
-    tags: [tags.TYPESCRIPT, tags.NEXT, tags.TAILWIND, tags.SHADCN, tags.TURSO, tags.VERCEL]
-  },
-  {
-    title: 'Donly - Todo List App',
-    description:
-      'Donly es una aplicación de lista de tareas construida con HTML, CSS y JavaScript. Permite a los usuarios crear, editar, eliminar y marcar tareas como completadas de manera sencilla, con una interfaz intuitiva y responsiva.',
-    link: 'https://donly.vercel.app',
-    github: 'https://github.com/omancillav/donly',
-    image: 'donly.webp',
-    tags: [tags.JAVASCRIPT, tags.HTML, tags.CSS]
-  }
-];
+import { PROJECTS } from '@/lib/projects';
 ---
 
-<div class="flex flex-col gap-y-16">
+<div class="flex flex-col gap-16 md:gap-20">
   {
-    projects.map(({ image, title, description, tags, link, github }, index) => (
+    PROJECTS.map(({ image, title, description, tags, link, github }, index) => (
       <article
         class={`flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 w-ful ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
       >
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
             <img
-              alt="Recién llegado vs 5 años en Nueva Zelanda"
-              class="object-cover object-top w-full h-full transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              alt={`Screenshot of ${title}`}
+              class="object-cover object-top w-full h-full transition duration-500 md:scale-110 md:group-hover:scale-105"
               loading="lazy"
               src={image}
             />
@@ -152,7 +36,7 @@ const projects = [
               ))}
             </ul>
 
-            <div class="mt-2 text-gray-400">{description}</div>
+            <div class="mt-2 text-gray-400 text-pretty">{description}</div>
             <footer class="flex items-end justify-start mt-4 gap-x-4">
               {link && (
                 <Pill href={link}>
