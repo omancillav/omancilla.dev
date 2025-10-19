@@ -1,16 +1,26 @@
 ---
+import { Image } from 'astro:assets'
+import Avatar from '@/assets/img/avatar.webp'
 import Badge from '@/components/Badge.astro'
 import GitHubIcon from '@/assets/GitHub.astro'
 import LinkedInIcon from '@/assets/LinkedIn.astro'
 import MailIcon from '@/assets/Mail.astro'
-import CVIcon from '@/assets/CV.astro'
 import SocialPill from '@/components/Pill.astro';
 ---
 
 <div>
   <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6 md:gap-8">
     <div class="flex items-center gap-4 md:gap-0">
-      <img src="avatar.webp" alt="avatar omancilla" class="rounded-full size-24 md:size-32 my-auto" />
+      <Image
+        src={Avatar}
+        alt="Avatar omancilla"
+        class="rounded-full size-24 md:size-32 my-auto"
+        decoding="async"
+        loading="eager"
+        width={500}
+        height={500}
+        format="webp"
+      />
       <div class="md:hidden">
         <Badge>Desarrollador FullStack</Badge>
       </div>
@@ -41,13 +51,9 @@ import SocialPill from '@/components/Pill.astro';
       <LinkedInIcon class="size-4 md:size-5" />
       LinkedIn
     </SocialPill>
-    <SocialPill href="https://www.linkedin.com/in/omancilla">
-      <CVIcon class="size-4 md:size-5" />
-      Curriculum
-    </SocialPill>
     <SocialPill href="mailto:edgarmncllav04@gmail.com">
       <MailIcon class="size-4 md:size-5" />
-      edgarmncllav04@gmail.com
+      Contacto
     </SocialPill>
   </nav>
 </div>
