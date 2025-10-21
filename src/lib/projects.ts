@@ -29,6 +29,6 @@ export const PROJECTS = [
     link: 'https://donly.vercel.app',
     github: 'https://github.com/omancillav/donly',
     image: DonlyImage,
-    tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT]
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.TURSO]
   }
 ]
