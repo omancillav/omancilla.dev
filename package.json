@@ -11,10 +11,15 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@astrojs/react": "^4.4.0",
     "@fontsource-variable/onest": "^5.2.11",
     "@tailwindcss/vite": "^4.1.14",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "@vercel/analytics": "^1.5.0",
     "astro": "^5.14.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "sharp": "^0.33.5",
     "tailwindcss": "^4.1.14"
   },
