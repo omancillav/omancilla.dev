@@ -5,7 +5,8 @@ import Badge from '@/components/Badge.astro'
 import GitHubIcon from '@/assets/GitHub.astro'
 import LinkedInIcon from '@/assets/LinkedIn.astro'
 import MailIcon from '@/assets/Mail.astro'
-import SocialPill from '@/components/Pill.astro';
+import SocialPill from '@/components/Pill.astro'
+import ProfileCard from './ProfileCard'
 ---
 
 <div>
@@ -56,4 +57,18 @@ import SocialPill from '@/components/Pill.astro';
       Contacto
     </SocialPill>
   </nav>
+</div>
+<div>
+  <ProfileCard
+    name="Javi A. Torres"
+    title="Software Engineer"
+    handle="javicodes"
+    status="Online"
+    contactText="Contact Me"
+    avatarUrl="https://avatars.githubusercontent.com/omancillav"
+    showUserInfo={true}
+    enableTilt={true}
+    enableMobileTilt={false}
+    onContactClick={() => console.log('Contact clicked')}
+  />
 </div>
