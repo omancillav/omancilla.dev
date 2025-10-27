@@ -2,13 +2,15 @@
 import Pill from './Pill.astro'
 import Mail from '@/assets/Mail.astro'
 import GitHub from '@/assets/GitHub.astro'
-import LinkedIn from '@/assets/LinkedIn.astro'
+import LinkedIn from '@/assets/LinkedIn.astro';
 ---
 
-<footer class="flex flex-col rounded-lg shadow m-4 backdrop-blur-lg w-full max-w-[900px] mx-auto mb-10 p-4 gap-6">
+<footer
+  class="flex flex-col rounded-lg shadow m-4 backdrop-blur-lg w-full max-w-[900px] mx-auto mb-6 md:mb-10 p-4 gap-6"
+>
   <div class="w-full mx-auto flex justify-between items-center">
     <div class="flex flex-col justify-center">
-      <strong class="text-xl font-semibold text-blue-400/90">Omancilla</strong>
+      <strong class="text-xl font-semibold text-blue-400/90">Omar Mancilla</strong>
       <span class="text-sm text-white/60">Desarrollador FullStack</span>
     </div>
     <div class="flex items-center gap-2">
@@ -25,11 +27,6 @@ import LinkedIn from '@/assets/LinkedIn.astro'
   </div>
   <span class="flex w-full bg-blue-900 h-[1px]"></span>
   <div class="flex flex-col text-center">
-    <strong class="text-white/80 font-semibold">
-      Hecho por Omar Mancilla
-    </strong>
-    <span class="text-sm text-white/50">
-      © 2025 Casi todos los derechos reservados.
-    </span>
+    <span class="text-sm text-white/50"> © 2025 Casi todos los derechos reservados. </span>
   </div>
 </footer>
