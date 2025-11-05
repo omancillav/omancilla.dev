@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets'
+import Photo from '@/assets/img/photo.webp';
+---
+
+<section class="flex items-center justify-evenly">
+  <div>
+    <p>Hola, soy Omar Mancilla, un desarrollador web apasionado por crear experiencias digitales únicas.</p>
+  </div>
+  <div>
+    <Image src={Photo} alt="Foto de Omar Mancilla" class="size-52 object-cover" />
+  </div>
+</section>
