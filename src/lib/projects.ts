@@ -1,7 +1,7 @@
 import { TAGS } from './tags'
 import VetSyncImage from '@/assets/img/vetsync.webp'
 import CutflyImage from '@/assets/img/cutfly.webp'
-import DonlyImage from '@/assets/img/donly.webp'
+import BalooImage from '@/assets/img/fotos.webp'
 
 export const PROJECTS = [
   {
@@ -23,12 +23,12 @@ export const PROJECTS = [
     tags: [TAGS.TYPESCRIPT, TAGS.NEXT, TAGS.TAILWIND, TAGS.SHADCN, TAGS.TURSO, TAGS.VERCEL]
   },
   {
-    title: 'Donly - Todo List App',
+    title: 'Baloo Fotos - Generador de Layouts para fotos infantiles',
     description:
-      'Donly es una aplicación de lista de tareas construida con HTML, CSS y JavaScript. Permite a los usuarios crear, editar, eliminar y marcar tareas como completadas de manera sencilla, con una interfaz intuitiva y responsiva.',
-    link: 'https://donly.vercel.app',
-    github: 'https://github.com/omancillav/donly',
-    image: DonlyImage,
-    tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.TURSO]
+      'Aplicación web en Next.js para generar layouts de fotos tamaño infantil (2.5cm × 3cm), con recorte, vista previa y exportación a PDF/PNG en alta calidad para impresión.',
+    link: 'https://fotosbaloo.vercel.app',
+    github: 'https://github.com/omancillav/foto-layout',
+    image: BalooImage,
+    tags: [TAGS.NEXT, TAGS.REACT, TAGS.TAILWIND, TAGS.TYPESCRIPT]
   }
 ]
