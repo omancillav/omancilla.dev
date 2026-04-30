@@ -8,7 +8,7 @@ export const PROJECTS = [
     title: 'Vet Sync - Gestión de citas veterinarias para mascotas',
     description:
       'Vet Sync es una aplicación web desarrollada con React y Tailwind CSS para gestionar clínicas veterinarias. Permite agendar citas, administrar expedientes de mascotas y controlar accesos por roles con una interfaz moderna y responsive.',
-    link: 'https://vetsync.vercel.app',
+    link: 'https://vetsyncapp.vercel.app',
     github: 'https://github.com/omancillav/vet-sync-app',
     image: VetSyncImage,
     tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.SHADCN, TAGS.SUPABASE, TAGS.NODE, TAGS.EXPRESS, TAGS.JWT]
