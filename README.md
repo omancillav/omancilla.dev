@@ -52,7 +52,7 @@ Si quieres explorar el código, aquí tienes un resumen de cómo está estructur
 
 ```bash
 # 1. Clona este repositorio
-git clone https://github.com/TU_USUARIO/omancilla.dev.git
+git clone https://github.com/omancillav/omancilla.dev.git
 
 # 2. Entra al directorio
 cd omancilla.dev
