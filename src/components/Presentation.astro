@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
-import Avatar from '@/assets/img/avatar.webp'
+import AvatarDark from '@/assets/img/avatar.webp'
+import AvatarLight from '@/assets/img/avatar-light.webp'
 import Badge from '@/components/Badge.astro'
 import GitHubIcon from '@/assets/GitHub.astro'
 import LinkedInIcon from '@/assets/LinkedIn.astro'
@@ -11,16 +12,28 @@ import SocialPill from '@/components/Pill.astro';
 <div>
   <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6 md:gap-8">
     <div class="flex items-center gap-4 md:gap-0">
-      <Image
-        src={Avatar}
-        alt="Avatar omancilla"
-        class="rounded-full size-26 md:size-36 my-auto"
-        decoding="async"
-        loading="eager"
-        width={500}
-        height={500}
-        format="webp"
-      />
+      <div class="relative size-26 md:size-36 my-auto">
+        <Image
+          src={AvatarLight}
+          alt="Avatar omancilla"
+          class="rounded-full size-full absolute inset-0 transition-opacity duration-500 ease-in-out opacity-100 dark:opacity-0"
+          decoding="async"
+          loading="eager"
+          width={500}
+          height={500}
+          format="webp"
+        />
+        <Image
+          src={AvatarDark}
+          alt="Avatar omancilla"
+          class="rounded-full size-full absolute inset-0 transition-opacity duration-500 ease-in-out opacity-0 dark:opacity-100"
+          decoding="async"
+          loading="eager"
+          width={500}
+          height={500}
+          format="webp"
+        />
+      </div>
       <div class="md:hidden">
         <Badge>Desarrollador FullStack</Badge>
       </div>
