@@ -13,7 +13,7 @@ import { PROJECTS } from '@/lib/projects';
         class={`flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 w-ful ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
       >
         <div class="w-full md:w-1/2">
-          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl shadow-slate-900/10 overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-slate-300/80 lg:hover:border-slate-400/80 lg:hover:bg-slate-100/70 dark:lg:border-gray-800 dark:lg:hover:border-gray-700 dark:lg:hover:bg-gray-800/50">
             <Image
               src={image}
               alt={`Screenshot of ${title}`}
@@ -26,7 +26,7 @@ import { PROJECTS } from '@/lib/projects';
         </div>
 
         <div class="w-full md:w-1/2">
-          <h3 class="text-2xl font-bold text-gray-100">{title}</h3>
+          <h3 class="text-2xl font-bold text-slate-950 dark:text-gray-100">{title}</h3>
           <div class="flex flex-wrap mt-2">
             <ul class="flex flex-row mb-2 gap-2 flex-wrap">
               {tags.map((tag) => (
@@ -39,7 +39,7 @@ import { PROJECTS } from '@/lib/projects';
               ))}
             </ul>
 
-            <div class="mt-2 text-gray-400 text-pretty">{description}</div>
+            <div class="mt-2 text-slate-600 dark:text-gray-400 text-pretty">{description}</div>
             <footer class="flex items-end justify-start mt-4 gap-x-4">
               {link && (
                 <Pill href={link}>

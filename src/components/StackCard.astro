@@ -6,16 +6,20 @@ interface Props {
 }
 ---
 
-<article class="w-full h-full text-center border border-blue-900 rounded-xl flex flex-col">
-  <div class="bg-slate-800/80 py-3.5 px-6 rounded-t-xl flex items-center justify-between gap-4 relative">
-    <h3 class="text-xl font-semibold">{title}</h3>
+<article
+  class="w-full h-full text-center rounded-xl flex flex-col overflow-hidden border border-blue-300 bg-white/14 shadow-[0_18px_45px_rgba(15,23,42,0.10)] backdrop-blur-md dark:border-blue-900 dark:bg-transparent dark:shadow-none dark:backdrop-blur-none"
+>
+  <div class="bg-sky-00/15 py-3.5 px-6 rounded-t-xl flex items-center justify-between gap-4 relative dark:bg-slate-800/80">
+    <h3 class="text-xl font-semibold text-slate-800 dark:text-white">{title}</h3>
     <div class="flex gap-2 left-4">
       <span class="flex size-3.5 bg-red-500 rounded-full"></span>
       <span class="flex size-3.5 bg-yellow-500 rounded-full"></span>
       <span class="flex size-3.5 bg-green-500 rounded-full"></span>
     </div>
   </div>
-  <div class="flex-1 bg-gradient-to-br from-slate-800/15 to-slate-400/20 backdrop-blur-sm rounded-b-xl">
+  <div
+    class="flex-1 bg-gradient-to-br from-white/10 via-white/6 to-sky-200/20 backdrop-blur-md rounded-b-xl dark:from-slate-800/15 dark:to-slate-400/20 dark:backdrop-blur-none"
+  >
     <div class="grid grid-cols-3 gap-y-8 gap-x-4 py-8 px-3">
       <slot />
     </div>
