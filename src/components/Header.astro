@@ -4,9 +4,10 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
 
 <header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-auto">
   <nav
-    class="flex flex-row items-center gap-2 md:gap-5 px-3 md:px-5 py-1.5 rounded-full
+    class="flex flex-row items-center gap-3 px-4 pr-3 py-2 rounded-full
+    max-[360px]:gap-2 max-[360px]:px-3 max-[360px]:pr-2 max-[360px]:py-1.5 md:gap-5 md:px-5 md:pr-5
     bg-white/75 backdrop-blur-md border border-slate-200/80 shadow-lg shadow-slate-900/5
-    text-[14px] text-slate-700 hover:text-slate-950
+    text-[14px] max-[360px]:text-[13px] text-slate-700 hover:text-slate-950
     dark:bg-white/10 dark:border-white/20 dark:shadow-black/20 dark:text-white/90 dark:hover:text-white"
   >
     <a href="#inicio" class="transition-colors duration-200 font-medium whitespace-nowrap"> Inicio </a>
