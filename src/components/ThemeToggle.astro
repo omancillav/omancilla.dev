@@ -1,0 +1,26 @@
+---
+import MoonIcon from '@/assets/Moon.astro'
+import SunIcon from '@/assets/Sun.astro'
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Cambiar tema"
+  class="grid size-8 place-items-center text-slate-800 transition hover:scale-110 hover:text-slate-950
+  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500
+  dark:text-sky-100 dark:hover:text-white"
+>
+  <SunIcon class="size-5 dark:hidden" aria-hidden="true" />
+  <MoonIcon class="hidden size-5 dark:block" aria-hidden="true" />
+</button>
+
+<script>
+const toggle = document.getElementById('theme-toggle')
+
+toggle?.addEventListener('click', () => {
+  const root = document.documentElement
+  const isDark = root.classList.toggle('dark')
+  localStorage.setItem('theme', isDark ? 'dark' : 'light')
+})
+</script>

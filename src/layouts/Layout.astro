@@ -11,6 +11,14 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      const storedTheme = localStorage.getItem('theme')
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+      if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/webp" href="/logo.webp" />
@@ -18,11 +26,13 @@ const { title, description } = Astro.props;
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body class="relative">
+  <body class="relative bg-slate-50 text-slate-950 transition-colors duration-300">
     <Analytics debug={false} />
     <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-[#020617]
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(37,99,235,0.5),rgba(2,6,23,0))]"
+      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-slate-50
+      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(125,211,252,0.55),rgba(248,250,252,0)),linear-gradient(180deg,rgba(240,249,255,0.92),rgba(241,245,249,0.55)_45%,rgba(236,253,245,0.5))]
+      transition-colors duration-300
+      dark:bg-[#020617] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(37,99,235,0.5),rgba(2,6,23,0))]"
     >
     </div>
     <Header />
@@ -39,10 +49,17 @@ const { title, description } = Astro.props;
     margin: 0;
     width: 100%;
     min-height: 100%;
-    color-scheme: dark;
     min-height: 100svh;
     scroll-behavior: smooth;
     overflow-x: hidden;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   @media (prefers-reduce-motion: reduce) {
