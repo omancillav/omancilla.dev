@@ -12,12 +12,20 @@ const { title, description } = Astro.props;
 <html lang="en">
   <head>
     <script is:inline>
-      const storedTheme = localStorage.getItem('theme')
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      ;(function () {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)')
 
-      if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
-        document.documentElement.classList.add('dark')
-      }
+        // Carga inicial: respetar localStorage, si no hay valor seguir al sistema
+        const stored = localStorage.getItem('theme')
+        const isDark = stored === 'dark' || (!stored && mq.matches)
+        document.documentElement.classList.toggle('dark', isDark)
+
+        // Cambio de tema del OS: sincronizar app y persistir el nuevo valor
+        mq.addEventListener('change', (e) => {
+          document.documentElement.classList.toggle('dark', e.matches)
+          localStorage.setItem('theme', e.matches ? 'dark' : 'light')
+        })
+      })()
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
