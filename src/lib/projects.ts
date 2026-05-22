@@ -23,9 +23,9 @@ export const PROJECTS = [
     tags: [TAGS.TYPESCRIPT, TAGS.NEXT, TAGS.TAILWIND, TAGS.SHADCN, TAGS.TURSO, TAGS.VERCEL]
   },
   {
-    title: 'Baloo Fotos - Generador de Layouts para fotos infantiles',
+    title: 'Baloo Fotos - Generador de layouts para impresión',
     description:
-      'Aplicación web en Next.js para generar layouts de fotos tamaño infantil (2.5cm × 3cm), con recorte, vista previa y exportación a PDF/PNG en alta calidad para impresión.',
+      'Aplicación web en Next.js para subir, recortar y organizar fotos en layouts listos para impresión. Incluye generador de fotos infantiles, collage automático y personalizado, vista previa en tiempo real, exportación a PDF/PNG/JPG a 300 DPI y opción de compartir archivos desde el navegador.',
     link: 'https://fotosbaloo.vercel.app',
     github: 'https://github.com/omancillav/foto-layout',
     image: BalooImage,
