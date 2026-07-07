@@ -12,6 +12,7 @@ import TursoIcon from '@/assets/Turso.astro'
 import JavaScriptIcon from '@/assets/JavaScript.astro'
 import Html5 from '@/assets/Html5.astro'
 import CSS from '@/assets/CSS.astro'
+import Expo from '@/assets/Expo.astro'
 
 export const TAGS = {
   NEXT: {
@@ -83,5 +84,10 @@ export const TAGS = {
     name: 'JavaScript',
     class: 'bg-yellow-300 text-black',
     icon: JavaScriptIcon
+  },
+  EXPO: {
+    name: 'Expo',
+    class: 'bg-[#003159] text-white',
+    icon: Expo
   }
 } as const

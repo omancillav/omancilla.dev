@@ -2,8 +2,18 @@ import { TAGS } from './tags'
 import VetSyncImage from '@/assets/img/vetsync.webp'
 import CutflyImage from '@/assets/img/cutfly.webp'
 import BalooImage from '@/assets/img/fotos.webp'
+import ReaddImage from '@/assets/img/readd.webp'
 
 export const PROJECTS = [
+  {
+    title: 'Readd - Biblioteca personal para lectores',
+    description:
+      'Aplicación móvil fullstack desarrollada con React Native y Expo para gestionar una biblioteca personal de libros. Permite buscar o registrar lecturas, organizarlas por estado, seguir el progreso, guardar reseñas y consultar estadísticas personales.',
+    link: '',
+    github: 'https://github.com/omancillav/readd',
+    image: ReaddImage,
+    tags: [TAGS.REACT, TAGS.EXPO, TAGS.NODE, TAGS.EXPRESS, TAGS.SUPABASE, TAGS.SUPABASE, TAGS.JWT]
+  },
   {
     title: 'Vet Sync - Gestión de citas veterinarias para mascotas',
     description:
