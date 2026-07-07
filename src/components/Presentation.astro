@@ -13,7 +13,12 @@ import SocialPill from '@/components/Pill.astro';
 <div>
   <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6 md:gap-8">
     <div class="flex items-center gap-4 md:gap-0">
-      <div class="relative size-26 md:size-36 my-auto">
+      <div class="relative size-26 md:size-36 my-auto isolate">
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute -inset-1 md:-inset-1.5 -z-10 rounded-full opacity-25 blur-lg bg-[conic-gradient(from_0deg,var(--color-sky-500),var(--color-sky-400),var(--color-yellow-200),var(--color-sky-400),var(--color-sky-600),var(--color-sky-500))] motion-safe:animate-[spin_8s_linear_infinite] dark:opacity-40"
+        >
+        </div>
         <Image
           src={AvatarLight}
           alt="Avatar omancilla"
