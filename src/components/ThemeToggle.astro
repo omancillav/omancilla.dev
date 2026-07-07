@@ -11,7 +11,7 @@ import SunIcon from '@/assets/Sun.astro'
   focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500
   dark:text-white dark:hover:text-white"
 >
-  <SunIcon  class="size-4.5 max-[360px]:size-4 dark:hidden" aria-hidden="true" />
+  <SunIcon class="size-4.5 max-[360px]:size-4 dark:hidden" aria-hidden="true" />
   <MoonIcon class="hidden size-4.5 max-[360px]:size-4 dark:block" aria-hidden="true" />
 </button>
 
@@ -24,4 +24,3 @@ toggle?.addEventListener('click', () => {
   localStorage.setItem('theme', isDark ? 'dark' : 'light')
 })
 </script>
-
