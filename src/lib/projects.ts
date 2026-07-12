@@ -9,7 +9,7 @@ export const PROJECTS = [
     title: 'Readd - Biblioteca personal para lectores',
     description:
       'Aplicación móvil fullstack desarrollada con React Native y Expo para gestionar una biblioteca personal de libros. Permite buscar o registrar lecturas, organizarlas por estado, seguir el progreso, guardar reseñas y consultar estadísticas personales.',
-    link: '',
+    link: 'https://readdapp.com',
     github: 'https://github.com/omancillav/readd',
     image: ReaddImage,
     tags: [TAGS.REACT, TAGS.EXPO, TAGS.NODE, TAGS.EXPRESS, TAGS.SUPABASE, TAGS.SUPABASE, TAGS.JWT]

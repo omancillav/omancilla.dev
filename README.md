@@ -5,7 +5,7 @@
     <strong>Desarrollador enfocado en crear experiencias web rápidas, accesibles y con un diseño impecable.</strong>
   </p>
 
-  <!-- Badges interactivos (Recuerda actualizar los links) -->
+  <!-- Badges interactivos -->
   <a href="https://omancilla.dev"><img src="https://img.shields.io/badge/Sitio_Web-omancilla.dev-000000?style=for-the-badge&logo=vercel" alt="Sitio Web" /></a>
   <a href="https://linkedin.com/in/omancilla"><img src="https://img.shields.io/badge/LinkedIn-Conectar-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn" /></a>
   <a href="mailto:contacto@omancilla.dev"><img src="https://img.shields.io/badge/Email-Contáctame-EA4335?style=for-the-badge&logo=gmail" alt="Email" /></a>
