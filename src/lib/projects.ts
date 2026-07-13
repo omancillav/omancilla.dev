@@ -12,16 +12,7 @@ export const PROJECTS = [
     link: 'https://readdapp.com',
     github: 'https://github.com/omancillav/readd',
     image: ReaddImage,
-    tags: [TAGS.REACT, TAGS.EXPO, TAGS.NODE, TAGS.EXPRESS, TAGS.SUPABASE, TAGS.SUPABASE, TAGS.JWT]
-  },
-  {
-    title: 'Vet Sync - Gestión de citas veterinarias para mascotas',
-    description:
-      'Vet Sync es una aplicación web desarrollada con React y Tailwind CSS para gestionar clínicas veterinarias. Permite agendar citas, administrar expedientes de mascotas y controlar accesos por roles con una interfaz moderna y responsive.',
-    link: 'https://vetsyncapp.vercel.app',
-    github: 'https://github.com/omancillav/vet-sync-app',
-    image: VetSyncImage,
-    tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.SHADCN, TAGS.SUPABASE, TAGS.NODE, TAGS.EXPRESS, TAGS.JWT]
+    tags: [TAGS.REACT_NATIVE, TAGS.EXPO, TAGS.NODE, TAGS.EXPRESS, TAGS.SUPABASE, TAGS.SUPABASE, TAGS.JWT]
   },
   {
     title: 'Cutfly - Acortador de URLs Open Source',
@@ -31,6 +22,15 @@ export const PROJECTS = [
     github: 'https://github.com/omancillav/cutfly',
     image: CutflyImage,
     tags: [TAGS.TYPESCRIPT, TAGS.NEXT, TAGS.TAILWIND, TAGS.SHADCN, TAGS.TURSO, TAGS.VERCEL]
+  },
+  {
+    title: 'Vet Sync - Gestión de citas veterinarias para mascotas',
+    description:
+      'Vet Sync es una aplicación web desarrollada con React y Tailwind CSS para gestionar clínicas veterinarias. Permite agendar citas, administrar expedientes de mascotas y controlar accesos por roles con una interfaz moderna y responsive.',
+    link: 'https://vetsyncapp.vercel.app',
+    github: 'https://github.com/omancillav/vet-sync-app',
+    image: VetSyncImage,
+    tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.SHADCN, TAGS.SUPABASE, TAGS.NODE, TAGS.EXPRESS, TAGS.JWT]
   },
   {
     title: 'Baloo Fotos - Generador de layouts para impresión',

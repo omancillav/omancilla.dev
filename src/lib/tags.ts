@@ -30,6 +30,11 @@ export const TAGS = {
     class: 'bg-sky-700/90 text-slate-100',
     icon: ReactIcon
   },
+  REACT_NATIVE: {
+    name: 'React Native',
+    class: 'bg-sky-700/90 text-slate-100',
+    icon: ReactIcon
+  },
   SHADCN: {
     name: 'shadcn',
     class: 'bg-black text-white',
