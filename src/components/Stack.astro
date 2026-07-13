@@ -4,17 +4,7 @@ import StackCard from './StackCard.astro';
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-  <StackCard title="Backend">
-    {
-      BACKEND.map(({ name, icon: Icon }) => (
-        <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
-          <Icon class="size-10" />
-          <span class="text-sm text-slate-900 dark:text-slate-200">{name}</span>
-        </div>
-      ))
-    }
-  </StackCard>
-  <StackCard title="Frontend">
+  <StackCard title="Frontend y móvil">
     {
       FRONTEND.map(({ name, icon: Icon }) => (
         <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
@@ -24,7 +14,17 @@ import StackCard from './StackCard.astro';
       ))
     }
   </StackCard>
-  <StackCard title="Bases de Datos">
+  <StackCard title="Backend y desarrollo">
+    {
+      BACKEND.map(({ name, icon: Icon }) => (
+        <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
+          <Icon class="size-10" />
+          <span class="text-sm text-slate-900 dark:text-slate-200">{name}</span>
+        </div>
+      ))
+    }
+  </StackCard>
+  <StackCard title="Datos y servicios">
     {
       DATABASE.map(({ name, icon: Icon }) => (
         <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
@@ -34,7 +34,7 @@ import StackCard from './StackCard.astro';
       ))
     }
   </StackCard>
-  <StackCard title="Herramientas">
+  <StackCard title="Cloud y herramientas">
     {
       TOOLS.map(({ name, icon: Icon }) => (
         <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
