@@ -1,0 +1,18 @@
+---
+import { getLangFromUrl, getLocalizedPath, useTranslations } from '@/i18n/utils'
+import { languages } from '@/i18n/ui'
+
+const lang = getLangFromUrl(Astro.url)
+const otherLang = lang === 'es' ? 'en' : 'es'
+const t = useTranslations(lang)
+---
+
+<a
+  href={getLocalizedPath(Astro.url, otherLang)}
+  aria-label={t('nav.language')}
+  class="grid size-6 max-[360px]:size-5 md:size-7 place-items-center text-[12px] max-[360px]:text-[11px] md:text-[13px] font-semibold text-slate-800 transition hover:scale-110 hover:text-slate-950
+  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500
+  dark:text-white dark:hover:text-white"
+>
+  {languages[otherLang]}
+</a>

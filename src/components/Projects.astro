@@ -3,7 +3,11 @@ import { Image } from 'astro:assets'
 import GitHub from '@/assets/GitBrand.astro'
 import Link from '@/assets/Link.astro'
 import Pill from './Pill.astro'
-import { PROJECTS } from '@/lib/projects';
+import { PROJECTS } from '@/lib/projects'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <div class="flex flex-col gap-16 md:gap-20">
@@ -16,7 +20,7 @@ import { PROJECTS } from '@/lib/projects';
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl shadow-slate-900/10 overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-slate-300/80 lg:hover:border-slate-400/80 lg:hover:bg-slate-100/70 dark:lg:border-gray-800 dark:lg:hover:border-gray-700 dark:lg:hover:bg-gray-800/50">
             <Image
               src={image}
-              alt={`Screenshot of ${title}`}
+              alt={`Screenshot of ${title[lang]}`}
               width={800}
               class="object-cover object-top w-full h-full transition duration-500 md:scale-110 md:group-hover:scale-105"
               decoding="async"
@@ -26,7 +30,7 @@ import { PROJECTS } from '@/lib/projects';
         </div>
 
         <div class="w-full md:w-1/2">
-          <h3 class="text-2xl font-bold text-slate-950 dark:text-gray-100">{title}</h3>
+          <h3 class="text-2xl font-bold text-slate-950 dark:text-gray-100">{title[lang]}</h3>
           <div class="flex flex-wrap mt-2">
             <ul class="flex flex-row mb-2 gap-2 flex-wrap">
               {tags.map((tag) => (
@@ -39,18 +43,18 @@ import { PROJECTS } from '@/lib/projects';
               ))}
             </ul>
 
-            <div class="mt-2 text-slate-600 dark:text-gray-400 text-pretty">{description}</div>
+            <div class="mt-2 text-slate-600 dark:text-gray-400 text-pretty">{description[lang]}</div>
             <footer class="flex items-end justify-start mt-4 gap-x-4">
               {link && (
                 <Pill href={link}>
                   <Link class="size-5" />
-                  Ver sitio
+                  {t('projects.viewSite')}
                 </Pill>
               )}
               {github && (
                 <Pill href={github}>
                   <GitHub class="size-5" />
-                  Código
+                  {t('projects.code')}
                 </Pill>
               )}
             </footer>

@@ -1,5 +1,10 @@
 ---
 import ThemeToggle from '@/components/ThemeToggle.astro'
+import LanguageToggle from '@/components/LanguageToggle.astro'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-auto">
@@ -10,10 +15,14 @@ import ThemeToggle from '@/components/ThemeToggle.astro'
     text-[14px] max-[360px]:text-[13px] text-slate-700 hover:text-slate-950
     dark:bg-white/[0.08] dark:backdrop-saturate-100 dark:border-white/15 dark:shadow-[0_10px_35px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.18)] dark:text-white/90 dark:hover:text-white"
   >
-    <a href="#inicio" class="transition-colors duration-200 font-medium whitespace-nowrap"> Inicio </a>
-    <a href="#experience" class="transition-colors duration-200 font-medium whitespace-nowrap"> Experiencia </a>
-    <a href="#projects" class="transition-colors duration-200 font-medium whitespace-nowrap"> Proyectos </a>
-    <a href="#stack" class="transition-colors duration-200 font-medium whitespace-nowrap"> Tecnologías </a>
-    <ThemeToggle />
+    <a href="#inicio" class="transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.home')} </a>
+    <a href="#experience" class="transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.experience')} </a>
+    <a href="#projects" class="transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.projects')} </a>
+    <a href="#stack" class="transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.stack')} </a>
+    <span aria-hidden="true" class="h-4 max-[360px]:h-3.5 w-px bg-slate-900/15 dark:bg-white/15"></span>
+    <div class="flex items-center gap-1.5 max-[360px]:gap-1 md:gap-2">
+      <LanguageToggle />
+      <ThemeToggle />
+    </div>
   </nav>
 </header>

@@ -7,7 +7,11 @@ import GitHubIcon from '@/assets/GitHub.astro'
 import LinkedInIcon from '@/assets/LinkedIn.astro'
 import MailIcon from '@/assets/Mail.astro'
 import ArrowDownIcon from '@/assets/ArrowDown.astro'
-import SocialPill from '@/components/Pill.astro';
+import SocialPill from '@/components/Pill.astro'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <div>
@@ -41,24 +45,23 @@ import SocialPill from '@/components/Pill.astro';
         />
       </div>
       <div class="md:hidden">
-        <Badge>Desarrollador FullStack</Badge>
+        <Badge>{t('hero.badge')}</Badge>
       </div>
     </div>
     <div class="flex flex-col gap-4">
       <div class="hidden md:block">
-        <Badge>Desarrollador FullStack</Badge>
+        <Badge>{t('hero.badge')}</Badge>
       </div>
       <h1 class="text-slate-950 dark:text-white text-3xl md:text-5xl font-bold gap-6 md:gap-4">
-        Hey, soy <span class="text-sky-600 dark:text-sky-400/85">Omar Mancilla</span>
+        {t('hero.greeting')} <span class="text-sky-600 dark:text-sky-400/85">Omar Mancilla</span>
       </h1>
     </div>
   </div>
   <h2 class="text-xl text-slate-700 text-pretty dark:text-white dark:opacity-80">
-    <span class="text-yellow-500 dark:text-yellow-200">+1 Año de experiencia en desarrollo web. </span>Estudiante de
-    Ingeniería en Desarrollo de Software.
-    <span class="text-emerald-600 dark:text-green-300"> De México 🇲🇽.</span>
+    <span class="text-yellow-500 dark:text-yellow-200">{t('hero.experience')}</span>{t('hero.student')}
+    <span class="text-emerald-600 dark:text-green-300">{t('hero.country')}</span>
     <span class="opacity-85">
-      Enfocado en desarrollar soluciones digitales innovadoras que mejoren la experiencia de usuario.
+      {t('hero.focus')}
     </span>
   </h2>
   <nav class="flex gap-x-2 gap-y-3 md:gap-x-4 md:gap-y-4 mt-8 flex-wrap">
@@ -72,12 +75,12 @@ import SocialPill from '@/components/Pill.astro';
     </SocialPill>
     <SocialPill href="mailto:contacto@omancilla.dev">
       <MailIcon class="size-4 md:size-5" />
-      Contacto
+      {t('hero.contact')}
     </SocialPill>
   </nav>
   <a
     href="#experience"
-    aria-label="Ir a experiencia"
+    aria-label={t('hero.goToExperience')}
     class="absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full p-2 text-slate-600 transition hover:text-slate-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-500 motion-safe:animate-bounce dark:text-white/75 dark:hover:text-white"
   >
     <ArrowDownIcon class="size-7 md:size-8" aria-hidden="true" />

@@ -1,10 +1,14 @@
 ---
 import { BACKEND, FRONTEND, DATABASE, TOOLS } from '@/lib/stack'
-import StackCard from './StackCard.astro';
+import StackCard from './StackCard.astro'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-  <StackCard title="Frontend y móvil">
+  <StackCard title={t('stack.frontend')}>
     {
       FRONTEND.map(({ name, icon: Icon }) => (
         <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
@@ -14,7 +18,7 @@ import StackCard from './StackCard.astro';
       ))
     }
   </StackCard>
-  <StackCard title="Backend y desarrollo">
+  <StackCard title={t('stack.backend')}>
     {
       BACKEND.map(({ name, icon: Icon }) => (
         <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
@@ -24,7 +28,7 @@ import StackCard from './StackCard.astro';
       ))
     }
   </StackCard>
-  <StackCard title="Datos y servicios">
+  <StackCard title={t('stack.database')}>
     {
       DATABASE.map(({ name, icon: Icon }) => (
         <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
@@ -34,7 +38,7 @@ import StackCard from './StackCard.astro';
       ))
     }
   </StackCard>
-  <StackCard title="Cloud y herramientas">
+  <StackCard title={t('stack.tools')}>
     {
       TOOLS.map(({ name, icon: Icon }) => (
         <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
