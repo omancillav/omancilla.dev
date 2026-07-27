@@ -51,6 +51,26 @@ const lang = getLangFromUrl(Astro.url)
     <Header />
     <slot />
     <Footer />
+    <script>
+      const REVEAL_OPTIONS = { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const targets = document.querySelectorAll('[data-reveal]')
+
+      function onIntersect (entries, observer) {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        })
+      }
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-visible'))
+      } else {
+        const observer = new IntersectionObserver(onIntersect, REVEAL_OPTIONS)
+        targets.forEach((el) => observer.observe(el))
+      }
+    </script>
   </body>
 </html>
 
@@ -75,7 +95,7 @@ const lang = getLangFromUrl(Astro.url)
     color-scheme: dark;
   }
 
-  @media (prefers-reduce-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
