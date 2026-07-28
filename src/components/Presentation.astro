@@ -76,7 +76,17 @@ const t = useTranslations(lang)
   </div>
 
   <div class="relative z-40 mt-10 h-[380px] w-full md:absolute md:inset-y-0 md:left-[calc(50%-50vw)] md:mt-0 md:h-auto md:w-screen">
-    <Lanyard client:only="react" frontImage="/logo.webp" imageFit="contain" position={[0, 0, 22]} anchorX={3.5} anchorY={5.57} />
+    <Lanyard
+      client:only="react"
+      frontImage="/logo.webp"
+      imageFit="contain"
+      frontUsername="@omancilla"
+      backImage={AvatarDark.src}
+      backUsername="omancilla.dev"
+      position={[0, 0, 22]}
+      anchorX={3.5}
+      anchorY={5.57}
+    />
   </div>
   <a
     href="#experience"

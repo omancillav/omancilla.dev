@@ -46,6 +46,10 @@ interface LanyardProps {
   imageFit?: 'cover' | 'contain'
   lanyardImage?: string | null
   lanyardWidth?: number
+  /** Handle/username printed below the front logo, e.g. "@omancilla". */
+  frontUsername?: string | null
+  /** Handle/domain printed below the back image, e.g. "omancilla.dev". */
+  backUsername?: string | null
   /** Horizontal offset (world units) of the hanging point, e.g. to hang the card on the right. */
   anchorX?: number
   /** Vertical offset (world units) of the hanging point. Higher = the rope/card rest higher on screen. */
@@ -62,6 +66,8 @@ export default function Lanyard ({
   imageFit = 'cover',
   lanyardImage = null,
   lanyardWidth = 1,
+  frontUsername = null,
+  backUsername = null,
   anchorX = 0,
   anchorY = 4
 }: LanyardProps) {
@@ -90,6 +96,8 @@ export default function Lanyard ({
             imageFit={imageFit}
             lanyardImage={lanyardImage}
             lanyardWidth={lanyardWidth}
+            frontUsername={frontUsername}
+            backUsername={backUsername}
             anchorX={isMobile ? 0 : anchorX}
             anchorY={anchorY}
           />
@@ -114,6 +122,8 @@ interface BandProps {
   imageFit?: 'cover' | 'contain'
   lanyardImage?: string | null
   lanyardWidth?: number
+  frontUsername?: string | null
+  backUsername?: string | null
   anchorX?: number
   anchorY?: number
 }
@@ -127,6 +137,8 @@ function Band ({
   imageFit = 'cover',
   lanyardImage = null,
   lanyardWidth = 1,
+  frontUsername = null,
+  backUsername = null,
   anchorX = 0,
   anchorY = 4
 }: BandProps) {
@@ -177,32 +189,101 @@ function Band ({
     // Keep the original baked atlas for the card edges and any untouched face.
     ctx.drawImage(baseImg, 0, 0, W, H)
 
-    const drawFitted = (img: HTMLImageElement, rect: { x: number; y: number; w: number; h: number }) => {
+    // Cover the graphic baked into the card face with the site's own sky-blue
+    // palette (radial glow + a faint diagonal band) instead of a flat sticker,
+    // so the printed panel reads as a designed surface, not just white.
+    const fillFaceBackground = (rect: { x: number; y: number; w: number; h: number }) => {
       const rx = rect.x * W
       const ry = rect.y * H
       const rw = rect.w * W
       const rh = rect.h * H
-      // Cover the graphic baked into the card face with its own background color
-      // (sampled from the top edge of the region) so only the supplied image shows.
-      const sample = ctx.getImageData(Math.round(rx + rw / 2), Math.round(ry + 3), 1, 1).data
-      ctx.fillStyle = `rgb(${sample[0]}, ${sample[1]}, ${sample[2]})`
+      const glow = ctx.createLinearGradient(rx, ry, rx + rw * 0.3, ry + rh)
+      glow.addColorStop(0, '#bae6fd') // sky-200
+      glow.addColorStop(0.5, '#e0f2fe') // sky-100
+      glow.addColorStop(1, '#f8fafc') // slate-50
+      ctx.fillStyle = glow
       ctx.fillRect(rx, ry, rw, rh)
+
+      const band = ctx.createLinearGradient(rx, ry, rx + rw, ry + rh)
+      band.addColorStop(0, 'rgba(2, 132, 199, 0.16)') // sky-600
+      band.addColorStop(0.5, 'rgba(56, 189, 248, 0)')
+      band.addColorStop(1, 'rgba(3, 105, 161, 0.14)') // sky-700
+      ctx.fillStyle = band
+      ctx.fillRect(rx, ry, rw, rh)
+
+      ctx.strokeStyle = 'rgba(3, 105, 161, 0.25)'
+      ctx.lineWidth = Math.max(1, rw * 0.006)
+      ctx.strokeRect(rx + ctx.lineWidth / 2, ry + ctx.lineWidth / 2, rw - ctx.lineWidth, rh - ctx.lineWidth)
+      return { rx, ry, rw, rh }
+    }
+
+    // Padded image up top, optional handle text below a thin divider — gives the
+    // card face a designed "badge" look instead of a bare image edge-to-edge.
+    // Shared by both the front (logo) and back (avatar) faces.
+    const drawFace = (
+      img: HTMLImageElement,
+      rect: { x: number; y: number; w: number; h: number },
+      username: string | null,
+      fillWidth = false
+    ) => {
+      const { rx, ry, rw, rh } = fillFaceBackground(rect)
+      const padX = rw * 0.16
+      // Optical centering: the card's clip/grommet hardware sits just above the
+      // printed panel and visually weighs down the top, so use more top padding
+      // than bottom to compensate and keep the content feeling centered.
+      const padTop = rh * 0.22
+      const padBottom = rh * 0.12
+      const innerX = rx + padX
+      const innerY = ry + padTop
+      const innerW = rw - padX * 2
+      const innerH = rh - padTop - padBottom
+
+      // fillWidth (used for the back/avatar face): the photo spans the full
+      // inner width edge-to-edge, cropping top/bottom as needed, and the
+      // handle text sits in whatever height is left over below it.
+      const imgH = username ? innerH * (fillWidth ? 0.74 : 0.58) : innerH
       const pick = imageFit === 'contain' ? Math.min : Math.max
-      const scale = pick(rw / img.width, rh / img.height)
+      const scale = fillWidth ? innerW / img.width : pick(innerW / img.width, imgH / img.height)
       const dw = img.width * scale
       const dh = img.height * scale
-      const dx = rx + (rw - dw) / 2
-      const dy = ry + (rh - dh) / 2
+      const dx = innerX + (innerW - dw) / 2
+      // Bias the image toward the bottom of its box (instead of centering it) so
+      // it sits closer to the divider/handle below, without moving either — except
+      // when filling the width, where centering the crop looks more natural.
+      const dy = fillWidth ? innerY + (imgH - dh) / 2 : innerY + (imgH - dh) * 0.85
       ctx.save()
       ctx.beginPath()
-      ctx.rect(rx, ry, rw, rh)
+      ctx.rect(innerX, innerY, innerW, imgH)
       ctx.clip()
       ctx.drawImage(img, dx, dy, dw, dh)
       ctx.restore()
+
+      if (username) {
+        const dividerY = innerY + imgH + innerH * 0.04
+        ctx.strokeStyle = 'rgba(2, 132, 199, 0.25)'
+        ctx.lineWidth = Math.max(1, rw * 0.004)
+        ctx.beginPath()
+        ctx.moveTo(innerX + innerW * 0.2, dividerY)
+        ctx.lineTo(innerX + innerW * 0.8, dividerY)
+        ctx.stroke()
+
+        // Auto-shrink the font until the handle fits the padded width, so it
+        // never overflows the card edges.
+        let fontSize = Math.round(innerW * 0.22)
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'top'
+        do {
+          ctx.font = `800 ${fontSize}px system-ui, -apple-system, sans-serif`
+          fontSize -= 1
+        } while (ctx.measureText(username).width > innerW * 0.9 && fontSize > 8)
+
+        ctx.fillStyle = '#0369a1' // sky-700, for contrast against the bolder background
+        ctx.fillText(username, innerX + innerW / 2, dividerY + innerH * 0.05)
+      }
     }
 
-    if (frontImage && frontTex.image) drawFitted(frontTex.image as HTMLImageElement, FRONT_UV_RECT)
-    if (backImage && backTex.image) drawFitted(backTex.image as HTMLImageElement, BACK_UV_RECT)
+    if (frontImage && frontTex.image) drawFace(frontTex.image as HTMLImageElement, FRONT_UV_RECT, frontUsername)
+    if (backImage && backTex.image) drawFace(backTex.image as HTMLImageElement, BACK_UV_RECT, backUsername, true)
 
     const composite = new THREE.CanvasTexture(canvas)
     composite.colorSpace = THREE.SRGBColorSpace
@@ -210,7 +291,7 @@ function Band ({
     composite.anisotropy = 16
     composite.needsUpdate = true
     return composite
-  }, [frontImage, backImage, imageFit, frontTex, backTex, materials.base.map])
+  }, [frontImage, backImage, imageFit, frontUsername, backUsername, frontTex, backTex, materials.base.map])
 
   const [curve] = useState(
     () => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
