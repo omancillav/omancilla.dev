@@ -16,6 +16,26 @@ const t = useTranslations(lang)
 ---
 
 <div class="w-full">
+  {/* Mobile: fixed to the viewport (stays put while scrolling), flush with the top-right
+      corner of the screen (not the header) so the cord reads as hanging off the screen
+      edge itself — it renders under the header (z-40 < z-50) where they overlap, which
+      is fine since most of the card sits below the header's height. Desktop: reverts to
+      the full-viewport overlay (this div's root ancestor, the Presentation component's
+      own <div>, isn't position:relative, so md:absolute escapes up to the Container
+      section, which is what needs to be the positioned ancestor there). */}
+  <div class="fixed top-0 right-0 z-40 h-80 w-52 md:absolute md:inset-y-0 md:top-auto md:right-auto md:left-[calc(50%-50vw)] md:h-auto md:w-screen">
+    <Lanyard
+      client:only="react"
+      frontImage="/logo.webp"
+      imageFit="contain"
+      frontUsername="@omancilla"
+      backImage="/logo.webp"
+      backUsername="@omancilla"
+      position={[0, 0, 22]}
+      anchorX={3.5}
+      anchorY={5.57}
+    />
+  </div>
   <div class="relative z-10 w-full">
     <div class="flex items-center gap-6 md:gap-8 mb-6" data-reveal="zoom" style="--reveal-delay: 0">
       <div class="relative size-26 md:size-32 my-auto isolate shrink-0">
@@ -73,20 +93,6 @@ const t = useTranslations(lang)
         {t('hero.contact')}
       </SocialPill>
     </nav>
-  </div>
-
-  <div class="relative z-40 mt-10 h-[380px] w-full md:absolute md:inset-y-0 md:left-[calc(50%-50vw)] md:mt-0 md:h-auto md:w-screen">
-    <Lanyard
-      client:only="react"
-      frontImage="/logo.webp"
-      imageFit="contain"
-      frontUsername="@omancilla"
-      backImage={AvatarDark.src}
-      backUsername="omancilla.dev"
-      position={[0, 0, 22]}
-      anchorX={3.5}
-      anchorY={5.57}
-    />
   </div>
   <a
     href="#experience"

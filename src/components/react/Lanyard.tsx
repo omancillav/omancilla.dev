@@ -283,7 +283,7 @@ function Band ({
     }
 
     if (frontImage && frontTex.image) drawFace(frontTex.image as HTMLImageElement, FRONT_UV_RECT, frontUsername)
-    if (backImage && backTex.image) drawFace(backTex.image as HTMLImageElement, BACK_UV_RECT, backUsername, true)
+    if (backImage && backTex.image) drawFace(backTex.image as HTMLImageElement, BACK_UV_RECT, backUsername)
 
     const composite = new THREE.CanvasTexture(canvas)
     composite.colorSpace = THREE.SRGBColorSpace
@@ -299,6 +299,12 @@ function Band ({
   // Only drives the RigidBody type (kinematic while held, dynamic otherwise);
   // the actual drag data lives in `dragOffset` so window handlers stay fresh.
   const [dragging, setDragging] = useState(false)
+  // The chain spawns pre-staggered ([0.5,0,0]..[2,0,0]) so gravity can pull it
+  // into a natural drape; for a couple of frames while that settles the rope
+  // can render as a stray, disconnected-looking segment (most visible on
+  // narrow mobile viewports). Stay hidden until it's had time to settle.
+  const [ready, setReady] = useState(false)
+  const readyFrame = useRef(0)
 
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1])
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1])
@@ -369,6 +375,10 @@ function Band ({
   }, [camera, gl, raycaster])
 
   useFrame((state, delta) => {
+    if (!ready) {
+      readyFrame.current += 1
+      if (readyFrame.current > 20) setReady(true)
+    }
     if (dragOffset.current) {
       vec.set(pointerNDC.current.x, pointerNDC.current.y, 0.5).unproject(state.camera)
       dir.copy(vec).sub(state.camera.position).normalize()
@@ -404,7 +414,7 @@ function Band ({
 
   return (
     <>
-      <group position={[anchorX, anchorY, 0]}>
+      <group position={[anchorX, anchorY, 0]} visible={ready}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
@@ -433,7 +443,7 @@ function Band ({
           </group>
         </RigidBody>
       </group>
-      <mesh ref={band}>
+      <mesh ref={band} visible={ready}>
         <meshLineGeometry />
         <meshLineMaterial
           color="white"
