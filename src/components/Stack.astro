@@ -1,43 +1,63 @@
 ---
 import { BACKEND, FRONTEND, DATABASE, TOOLS } from '@/lib/stack'
-import StackCard from './StackCard.astro';
+import StackCard from './StackCard.astro'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-  <StackCard title="Frontend y móvil">
+  <StackCard title={t('stack.frontend')} delay={0}>
     {
-      FRONTEND.map(({ name, icon: Icon }) => (
-        <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
+      FRONTEND.map(({ name, icon: Icon }, i) => (
+        <div
+          class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200"
+          data-reveal="zoom"
+          style={`--reveal-delay: ${Math.min(i * 30, 150)}`}
+        >
           <Icon class="size-10" />
           <span class="text-sm text-slate-900 dark:text-slate-200">{name}</span>
         </div>
       ))
     }
   </StackCard>
-  <StackCard title="Backend y desarrollo">
+  <StackCard title={t('stack.backend')} delay={100}>
     {
-      BACKEND.map(({ name, icon: Icon }) => (
-        <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
+      BACKEND.map(({ name, icon: Icon }, i) => (
+        <div
+          class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200"
+          data-reveal="zoom"
+          style={`--reveal-delay: ${Math.min(i * 30, 150)}`}
+        >
           <Icon class="size-10" />
           <span class="text-sm text-slate-900 dark:text-slate-200">{name}</span>
         </div>
       ))
     }
   </StackCard>
-  <StackCard title="Datos y servicios">
+  <StackCard title={t('stack.database')} delay={200}>
     {
-      DATABASE.map(({ name, icon: Icon }) => (
-        <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
+      DATABASE.map(({ name, icon: Icon }, i) => (
+        <div
+          class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200"
+          data-reveal="zoom"
+          style={`--reveal-delay: ${Math.min(i * 30, 150)}`}
+        >
           <Icon class="size-10" />
           <span class="text-sm text-slate-900 dark:text-slate-200">{name}</span>
         </div>
       ))
     }
   </StackCard>
-  <StackCard title="Cloud y herramientas">
+  <StackCard title={t('stack.tools')} delay={300}>
     {
-      TOOLS.map(({ name, icon: Icon }) => (
-        <div class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200">
+      TOOLS.map(({ name, icon: Icon }, i) => (
+        <div
+          class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200"
+          data-reveal="zoom"
+          style={`--reveal-delay: ${Math.min(i * 30, 150)}`}
+        >
           <Icon class="size-10" />
           <span class="text-sm text-slate-900 dark:text-slate-200">{name}</span>
         </div>

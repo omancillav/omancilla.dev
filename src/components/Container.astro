@@ -1,8 +1,8 @@
 ---
-const { classname, id, title, icon: Icon, spacing = 'py-18 md:py-24' } = Astro.props;
+const { classname, id, title, icon: Icon, spacing = 'py-18 md:py-24', reveal = true } = Astro.props;
 ---
 
-<section class={`${classname} ${spacing}`} id={id}>
+<section class={`${classname} ${spacing}`} id={id} data-reveal={reveal ? '' : undefined}>
   {
     (title || Icon) && (
       <h2 class="text-3xl font-semibold mb-8 flex items-center gap-3 text-slate-950 dark:text-white">

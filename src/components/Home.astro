@@ -1,0 +1,36 @@
+---
+import Container from '@/components/Container.astro'
+import SuitcaseIcon from '@/assets/Suitcase.astro'
+import CodeIcon from '@/assets/Code.astro'
+import BracesIcon from '@/assets/Braces.astro'
+import Presentation from '@/components/Presentation.astro'
+import Experience from '@/components/Experience.astro'
+import Projects from '@/components/Projects.astro'
+import Stack from '@/components/Stack.astro'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<main class="px-4 mx-auto w-full max-w-[900px]">
+  <Container id="inicio" classname="relative box-border min-h-svh flex flex-col justify-center items-center" reveal={false}>
+    <Presentation />
+  </Container>
+
+  <Container id="experience" title={t('section.experience')} icon={SuitcaseIcon}>
+    <Experience />
+  </Container>
+
+  <Container id="projects" title={t('section.projects')} icon={CodeIcon}>
+    <Projects />
+  </Container>
+
+  <Container id="stack" title={t('section.stack')} icon={BracesIcon}>
+    <Stack />
+  </Container>
+
+  <!-- <Container id="about" title="Sobre mí" icon={UserIcon}>
+    <About />
+  </Container> -->
+</main>

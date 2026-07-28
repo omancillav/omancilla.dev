@@ -20,6 +20,13 @@ export default [
     }
   },
   {
+    languageOptions: {
+      globals: {
+        URL: 'readonly'
+      }
+    }
+  },
+  {
     rules: {
       // Standard JS Rules - https://standardjs.com/rules
 

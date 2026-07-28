@@ -4,13 +4,18 @@ import '@fontsource-variable/onest'
 import Analytics from '@vercel/analytics/astro'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
+import { getLangFromUrl, getLocalizedPath } from '@/i18n/utils'
 
-const { title, description } = Astro.props;
+const { title, description } = Astro.props
+const lang = getLangFromUrl(Astro.url)
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
+    <link rel="alternate" hreflang="es" href={new URL(getLocalizedPath(Astro.url, 'es'), Astro.site ?? Astro.url.origin)} />
+    <link rel="alternate" hreflang="en" href={new URL(getLocalizedPath(Astro.url, 'en'), Astro.site ?? Astro.url.origin)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(getLocalizedPath(Astro.url, 'es'), Astro.site ?? Astro.url.origin)} />
     <script is:inline>
       ;(function () {
         const mq = window.matchMedia('(prefers-color-scheme: dark)')
@@ -46,6 +51,26 @@ const { title, description } = Astro.props;
     <Header />
     <slot />
     <Footer />
+    <script>
+      const REVEAL_OPTIONS = { threshold: 0, rootMargin: '0px 0px -5% 0px' }
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const targets = document.querySelectorAll('[data-reveal]')
+
+      function onIntersect (entries, observer) {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        })
+      }
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-visible'))
+      } else {
+        const observer = new IntersectionObserver(onIntersect, REVEAL_OPTIONS)
+        targets.forEach((el) => observer.observe(el))
+      }
+    </script>
   </body>
 </html>
 
@@ -70,7 +95,7 @@ const { title, description } = Astro.props;
     color-scheme: dark;
   }
 
-  @media (prefers-reduce-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
