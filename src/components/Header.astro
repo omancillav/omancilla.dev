@@ -81,7 +81,7 @@ const t = useTranslations(lang)
 const trigger = document.getElementById('controls-trigger')
 const panel = document.getElementById('controls-panel')
 
-function setOpen (isOpen) {
+function setOpen (isOpen: boolean) {
   panel?.toggleAttribute('data-open', isOpen)
   panel?.toggleAttribute('inert', !isOpen)
   trigger?.setAttribute('aria-expanded', String(isOpen))
@@ -94,7 +94,8 @@ trigger?.addEventListener('click', (event) => {
 
 document.addEventListener('click', (event) => {
   if (!panel?.hasAttribute('data-open')) return
-  if (panel.contains(event.target) || trigger?.contains(event.target)) return
+  const target = event.target as Node | null
+  if (panel.contains(target) || trigger?.contains(target)) return
   setOpen(false)
 })
 

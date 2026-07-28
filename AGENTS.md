@@ -10,6 +10,7 @@ IMPORTANT: Never create commits, PRs, or push autonomously. Only when explicitly
 - For multi-file or architectural changes, describe the plan and wait for confirmation.
 - Reuse existing patterns and components before creating new ones.
 - After every code change, run `pnpm lint:fix`, then fix remaining issues manually.
+- After every code change, run `pnpm check` (TypeScript/Astro diagnostics) and fix any errors.
 
 ## Out of Scope
 
@@ -64,3 +65,4 @@ src/
 | Preview build | `pnpm preview` |
 | Lint | `pnpm lint` |
 | Lint with autofix | `pnpm lint:fix` |
+| TypeScript/Astro check | `pnpm check` |
