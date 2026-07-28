@@ -8,16 +8,17 @@ import LinkedInIcon from '@/assets/LinkedIn.astro'
 import MailIcon from '@/assets/Mail.astro'
 import ArrowDownIcon from '@/assets/ArrowDown.astro'
 import SocialPill from '@/components/Pill.astro'
+import Lanyard from '@/components/react/Lanyard'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
-<div>
-  <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6 md:gap-8">
-    <div class="flex items-center gap-4 md:gap-0" data-reveal="zoom" style="--reveal-delay: 0">
-      <div class="relative size-26 md:size-36 my-auto isolate">
+<div class="w-full">
+  <div class="relative z-10 w-full">
+    <div class="flex items-center gap-6 md:gap-8 mb-6" data-reveal="zoom" style="--reveal-delay: 0">
+      <div class="relative size-26 md:size-32 my-auto isolate shrink-0">
         <div
           aria-hidden="true"
           class="pointer-events-none absolute -inset-1 md:-inset-1.5 -z-10 rounded-full opacity-25 blur-lg bg-[conic-gradient(from_0deg,var(--color-sky-500),var(--color-sky-400),var(--color-yellow-200),var(--color-sky-400),var(--color-sky-600),var(--color-sky-500))] motion-safe:animate-[spin_8s_linear_infinite] dark:opacity-40"
@@ -44,40 +45,39 @@ const t = useTranslations(lang)
           format="webp"
         />
       </div>
-      <div class="md:hidden" data-reveal style="--reveal-delay: 0">
+      <div data-reveal style="--reveal-delay: 0">
         <Badge>{t('hero.badge')}</Badge>
       </div>
     </div>
-    <div class="flex flex-col gap-4">
-      <div class="hidden md:block" data-reveal style="--reveal-delay: 0">
-        <Badge>{t('hero.badge')}</Badge>
-      </div>
-      <h1 class="text-slate-950 dark:text-white text-3xl md:text-5xl font-bold gap-6 md:gap-4" data-reveal style="--reveal-delay: 100">
-        {t('hero.greeting')} <span class="text-sky-600 dark:text-sky-400/85">Omar Mancilla</span>
-      </h1>
-    </div>
+    <h1 class="text-slate-950 dark:text-white text-3xl md:text-5xl font-bold" data-reveal style="--reveal-delay: 100">
+      {t('hero.greeting')} <span class="text-sky-600 dark:text-sky-400/85">Omar Mancilla</span>
+    </h1>
+    <h2 class="mt-4 text-xl text-slate-700 text-pretty dark:text-white dark:opacity-80" data-reveal style="--reveal-delay: 200">
+      <span class="text-yellow-500 dark:text-yellow-200">{t('hero.experience')}</span>{t('hero.student')}
+      <span class="text-emerald-600 dark:text-green-300">{t('hero.country')}</span>
+      <span class="opacity-85">
+        {t('hero.focus')}
+      </span>
+    </h2>
+    <nav class="flex gap-x-2 gap-y-3 md:gap-x-4 md:gap-y-4 mt-8 flex-wrap" data-reveal style="--reveal-delay: 300">
+      <SocialPill href="https://github.com/omancillav">
+        <GitHubIcon class="size-4 md:size-5" />
+        GitHub
+      </SocialPill>
+      <SocialPill href="https://www.linkedin.com/in/omancilla">
+        <LinkedInIcon class="size-4 md:size-5" />
+        LinkedIn
+      </SocialPill>
+      <SocialPill href="mailto:contacto@omancilla.dev">
+        <MailIcon class="size-4 md:size-5" />
+        {t('hero.contact')}
+      </SocialPill>
+    </nav>
   </div>
-  <h2 class="text-xl text-slate-700 text-pretty dark:text-white dark:opacity-80" data-reveal style="--reveal-delay: 200">
-    <span class="text-yellow-500 dark:text-yellow-200">{t('hero.experience')}</span>{t('hero.student')}
-    <span class="text-emerald-600 dark:text-green-300">{t('hero.country')}</span>
-    <span class="opacity-85">
-      {t('hero.focus')}
-    </span>
-  </h2>
-  <nav class="flex gap-x-2 gap-y-3 md:gap-x-4 md:gap-y-4 mt-8 flex-wrap" data-reveal style="--reveal-delay: 300">
-    <SocialPill href="https://github.com/omancillav">
-      <GitHubIcon class="size-4 md:size-5" />
-      GitHub
-    </SocialPill>
-    <SocialPill href="https://www.linkedin.com/in/omancilla">
-      <LinkedInIcon class="size-4 md:size-5" />
-      LinkedIn
-    </SocialPill>
-    <SocialPill href="mailto:contacto@omancilla.dev">
-      <MailIcon class="size-4 md:size-5" />
-      {t('hero.contact')}
-    </SocialPill>
-  </nav>
+
+  <div class="relative z-40 mt-10 h-[380px] w-full md:absolute md:inset-y-0 md:left-[calc(50%-50vw)] md:mt-0 md:h-auto md:w-screen">
+    <Lanyard client:only="react" frontImage="/logo.webp" imageFit="contain" position={[0, 0, 22]} anchorX={3.5} anchorY={5.57} />
+  </div>
   <a
     href="#experience"
     aria-label={t('hero.goToExperience')}

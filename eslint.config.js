@@ -27,6 +27,18 @@ export default [
     }
   },
   {
+    files: ['**/*.tsx', '**/*.jsx'],
+    languageOptions: {
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        Element: 'readonly',
+        HTMLImageElement: 'readonly',
+        PointerEvent: 'readonly'
+      }
+    }
+  },
+  {
     rules: {
       // Standard JS Rules - https://standardjs.com/rules
 
