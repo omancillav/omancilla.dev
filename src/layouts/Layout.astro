@@ -52,7 +52,7 @@ const lang = getLangFromUrl(Astro.url)
     <slot />
     <Footer />
     <script>
-      const REVEAL_OPTIONS = { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+      const REVEAL_OPTIONS = { threshold: 0, rootMargin: '0px 0px -5% 0px' }
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       const targets = document.querySelectorAll('[data-reveal]')
 

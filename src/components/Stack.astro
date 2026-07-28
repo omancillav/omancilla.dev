@@ -13,7 +13,7 @@ const t = useTranslations(lang)
       FRONTEND.map(({ name, icon: Icon }, i) => (
         <div
           class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200"
-          data-reveal
+          data-reveal="zoom"
           style={`--reveal-delay: ${i * 60}`}
         >
           <Icon class="size-10" />
@@ -27,7 +27,7 @@ const t = useTranslations(lang)
       BACKEND.map(({ name, icon: Icon }, i) => (
         <div
           class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200"
-          data-reveal
+          data-reveal="zoom"
           style={`--reveal-delay: ${i * 60}`}
         >
           <Icon class="size-10" />
@@ -41,7 +41,7 @@ const t = useTranslations(lang)
       DATABASE.map(({ name, icon: Icon }, i) => (
         <div
           class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200"
-          data-reveal
+          data-reveal="zoom"
           style={`--reveal-delay: ${i * 60}`}
         >
           <Icon class="size-10" />
@@ -55,7 +55,7 @@ const t = useTranslations(lang)
       TOOLS.map(({ name, icon: Icon }, i) => (
         <div
           class="flex flex-col items-center gap-3 text-center justify-center text-slate-900 hover:scale-105 transition-transform dark:text-slate-200"
-          data-reveal
+          data-reveal="zoom"
           style={`--reveal-delay: ${i * 60}`}
         >
           <Icon class="size-10" />

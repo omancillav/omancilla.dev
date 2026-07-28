@@ -48,7 +48,8 @@ const t = useTranslations(lang)
 
     <div
       id="controls-panel"
-      class="hidden md:!hidden absolute right-0 top-[calc(100%+0.5rem)] w-36 flex flex-col divide-y divide-slate-900/10 overflow-hidden rounded-2xl
+      inert
+      class="md:!hidden absolute right-0 top-[calc(100%+0.5rem)] w-36 flex flex-col divide-y divide-slate-900/10 overflow-hidden rounded-2xl
       bg-white/55 backdrop-blur-xl backdrop-saturate-200 border border-white/5 shadow-[0_10px_35px_rgba(15,23,42,0.16),inset_0_1px_0_rgba(255,255,255,0.82)]
       dark:bg-white/[0.08] dark:backdrop-saturate-100 dark:border-white/15 dark:shadow-[0_10px_35px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.18)] dark:divide-white/15"
     >
@@ -80,22 +81,25 @@ const t = useTranslations(lang)
 const trigger = document.getElementById('controls-trigger')
 const panel = document.getElementById('controls-panel')
 
+function setOpen (isOpen) {
+  panel?.toggleAttribute('data-open', isOpen)
+  panel?.toggleAttribute('inert', !isOpen)
+  trigger?.setAttribute('aria-expanded', String(isOpen))
+}
+
 trigger?.addEventListener('click', (event) => {
   event.stopPropagation()
-  const isNowHidden = panel?.classList.toggle('hidden')
-  trigger.setAttribute('aria-expanded', String(!isNowHidden))
+  setOpen(!panel?.hasAttribute('data-open'))
 })
 
 document.addEventListener('click', (event) => {
-  if (!panel || panel.classList.contains('hidden')) return
+  if (!panel?.hasAttribute('data-open')) return
   if (panel.contains(event.target) || trigger?.contains(event.target)) return
-  panel.classList.add('hidden')
-  trigger?.setAttribute('aria-expanded', 'false')
+  setOpen(false)
 })
 
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return
-  panel?.classList.add('hidden')
-  trigger?.setAttribute('aria-expanded', 'false')
+  setOpen(false)
 })
 </script>
