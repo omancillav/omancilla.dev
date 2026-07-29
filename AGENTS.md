@@ -9,6 +9,9 @@ IMPORTANT: Never create commits, PRs, or push autonomously. Only when explicitly
 - Make minimal changes — do not refactor unrelated code.
 - For multi-file or architectural changes, describe the plan and wait for confirmation.
 - Reuse existing patterns and components before creating new ones.
+- Do not add comments by default. Only add one when the WHY is non-obvious (a hidden
+  constraint, a workaround, a subtle invariant) — one line max, never a paragraph or
+  a comment explaining WHAT the code does.
 - After every code change, run `pnpm lint:fix`, then fix remaining issues manually.
 - After every code change, run `pnpm check` (TypeScript/Astro diagnostics) and fix any errors.
 

@@ -6,8 +6,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Never intercept page interactions (scroll, links, text). Dragging the card
-     is handled via window-level pointer events + raycast in Lanyard.tsx. */
   pointer-events: none;
   touch-action: none;
 }

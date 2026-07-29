@@ -6,19 +6,13 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline'
 import * as THREE from 'three'
 import './Lanyard.css'
 
-// Assets served statically from public/assets/lanyard (see AGENTS.md: src/assets/img is off-limits)
 const CARD_GLB_URL = '/assets/lanyard/card.glb'
 const LANYARD_TEXTURE_URL = '/assets/lanyard/lanyard.png'
 
-// 1x1 transparent pixel — lets useTexture be called unconditionally when a
-// front/back image isn't supplied.
 const BLANK_PIXEL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
 
-// The card model's front face is UV-mapped to the LEFT half of the texture
-// atlas and the back face to the RIGHT half (measured from card.glb). Each
-// custom image is composited into its own half so the two faces render
-// independently, aspect-preserving (no stretching).
+// card.glb UV atlas: front face = left half, back face = right half.
 const FRONT_UV_RECT = { x: 0, y: 0, w: 0.5, h: 0.755 }
 const BACK_UV_RECT = { x: 0.5, y: 0, w: 0.5, h: 0.757 }
 
@@ -46,13 +40,9 @@ interface LanyardProps {
   imageFit?: 'cover' | 'contain'
   lanyardImage?: string | null
   lanyardWidth?: number
-  /** Handle/username printed below the front logo, e.g. "@omancilla". */
   frontUsername?: string | null
-  /** Handle/domain printed below the back image, e.g. "omancilla.dev". */
   backUsername?: string | null
-  /** Horizontal offset (world units) of the hanging point, e.g. to hang the card on the right. */
   anchorX?: number
-  /** Vertical offset (world units) of the hanging point. Higher = the rope/card rest higher on screen. */
   anchorY?: number
 }
 
@@ -155,10 +145,6 @@ function Band ({
   const rot = new THREE.Vector3()
   const dir = new THREE.Vector3()
 
-  // The canvas has `pointer-events: none` so it never blocks the page (scroll,
-  // links, text selection). Dragging is instead driven by window-level pointer
-  // events + a manual raycast against the card, so the card can be grabbed and
-  // flung across the whole canvas without the element intercepting the page.
   const { camera, gl } = useThree()
   const raycaster = useMemo(() => new THREE.Raycaster(), [])
   const pointerNDC = useRef(new THREE.Vector2())
@@ -167,13 +153,9 @@ function Band ({
   const segmentProps = { type: 'dynamic' as const, canSleep: true, colliders: false as const, angularDamping: 4, linearDamping: 4 }
   const { nodes, materials } = useGLTF(CARD_GLB_URL) as unknown as CardGLTFResult
   const texture = useTexture(lanyardImage || LANYARD_TEXTURE_URL)
-  // useTexture must be called unconditionally; use a blank pixel when an image
-  // isn't supplied for a given face, then skip compositing it below.
   const frontTex = useTexture(frontImage || BLANK_PIXEL)
   const backTex = useTexture(backImage || BLANK_PIXEL)
 
-  // Composite the front/back images into the card's texture atlas (front = left
-  // half, back = right half). Each image is drawn aspect-preserving (no stretch).
   const cardMap = useMemo(() => {
     const baseMap = materials.base.map as THREE.Texture
     if (!frontImage && !backImage) return baseMap
@@ -186,28 +168,24 @@ function Band ({
     canvas.height = H
     const ctx = canvas.getContext('2d')
     if (!ctx) return baseMap
-    // Keep the original baked atlas for the card edges and any untouched face.
     ctx.drawImage(baseImg, 0, 0, W, H)
 
-    // Cover the graphic baked into the card face with the site's own sky-blue
-    // palette (radial glow + a faint diagonal band) instead of a flat sticker,
-    // so the printed panel reads as a designed surface, not just white.
     const fillFaceBackground = (rect: { x: number; y: number; w: number; h: number }) => {
       const rx = rect.x * W
       const ry = rect.y * H
       const rw = rect.w * W
       const rh = rect.h * H
       const glow = ctx.createLinearGradient(rx, ry, rx + rw * 0.3, ry + rh)
-      glow.addColorStop(0, '#bae6fd') // sky-200
-      glow.addColorStop(0.5, '#e0f2fe') // sky-100
-      glow.addColorStop(1, '#f8fafc') // slate-50
+      glow.addColorStop(0, '#bae6fd')
+      glow.addColorStop(0.5, '#e0f2fe')
+      glow.addColorStop(1, '#f8fafc')
       ctx.fillStyle = glow
       ctx.fillRect(rx, ry, rw, rh)
 
       const band = ctx.createLinearGradient(rx, ry, rx + rw, ry + rh)
-      band.addColorStop(0, 'rgba(2, 132, 199, 0.16)') // sky-600
+      band.addColorStop(0, 'rgba(2, 132, 199, 0.16)')
       band.addColorStop(0.5, 'rgba(56, 189, 248, 0)')
-      band.addColorStop(1, 'rgba(3, 105, 161, 0.14)') // sky-700
+      band.addColorStop(1, 'rgba(3, 105, 161, 0.14)')
       ctx.fillStyle = band
       ctx.fillRect(rx, ry, rw, rh)
 
@@ -217,9 +195,6 @@ function Band ({
       return { rx, ry, rw, rh }
     }
 
-    // Padded image up top, optional handle text below a thin divider — gives the
-    // card face a designed "badge" look instead of a bare image edge-to-edge.
-    // Shared by both the front (logo) and back (avatar) faces.
     const drawFace = (
       img: HTMLImageElement,
       rect: { x: number; y: number; w: number; h: number },
@@ -228,9 +203,7 @@ function Band ({
     ) => {
       const { rx, ry, rw, rh } = fillFaceBackground(rect)
       const padX = rw * 0.16
-      // Optical centering: the card's clip/grommet hardware sits just above the
-      // printed panel and visually weighs down the top, so use more top padding
-      // than bottom to compensate and keep the content feeling centered.
+      // Extra top padding compensates for the clip/grommet hardware above the panel.
       const padTop = rh * 0.22
       const padBottom = rh * 0.12
       const innerX = rx + padX
@@ -238,18 +211,12 @@ function Band ({
       const innerW = rw - padX * 2
       const innerH = rh - padTop - padBottom
 
-      // fillWidth (used for the back/avatar face): the photo spans the full
-      // inner width edge-to-edge, cropping top/bottom as needed, and the
-      // handle text sits in whatever height is left over below it.
       const imgH = username ? innerH * (fillWidth ? 0.74 : 0.58) : innerH
       const pick = imageFit === 'contain' ? Math.min : Math.max
       const scale = fillWidth ? innerW / img.width : pick(innerW / img.width, imgH / img.height)
       const dw = img.width * scale
       const dh = img.height * scale
       const dx = innerX + (innerW - dw) / 2
-      // Bias the image toward the bottom of its box (instead of centering it) so
-      // it sits closer to the divider/handle below, without moving either — except
-      // when filling the width, where centering the crop looks more natural.
       const dy = fillWidth ? innerY + (imgH - dh) / 2 : innerY + (imgH - dh) * 0.85
       ctx.save()
       ctx.beginPath()
@@ -267,8 +234,6 @@ function Band ({
         ctx.lineTo(innerX + innerW * 0.8, dividerY)
         ctx.stroke()
 
-        // Auto-shrink the font until the handle fits the padded width, so it
-        // never overflows the card edges.
         let fontSize = Math.round(innerW * 0.22)
         ctx.textAlign = 'center'
         ctx.textBaseline = 'top'
@@ -277,7 +242,7 @@ function Band ({
           fontSize -= 1
         } while (ctx.measureText(username).width > innerW * 0.9 && fontSize > 8)
 
-        ctx.fillStyle = '#0369a1' // sky-700, for contrast against the bolder background
+        ctx.fillStyle = '#0369a1'
         ctx.fillText(username, innerX + innerW / 2, dividerY + innerH * 0.05)
       }
     }
@@ -296,13 +261,9 @@ function Band ({
   const [curve] = useState(
     () => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
   )
-  // Only drives the RigidBody type (kinematic while held, dynamic otherwise);
-  // the actual drag data lives in `dragOffset` so window handlers stay fresh.
   const [dragging, setDragging] = useState(false)
-  // The chain spawns pre-staggered ([0.5,0,0]..[2,0,0]) so gravity can pull it
-  // into a natural drape; for a couple of frames while that settles the rope
-  // can render as a stray, disconnected-looking segment (most visible on
-  // narrow mobile viewports). Stay hidden until it's had time to settle.
+  // Rope segments spawn pre-staggered and take a few frames to drape naturally;
+  // stay hidden until settled to avoid a disconnected-looking flash on load.
   const [ready, setReady] = useState(false)
   const readyFrame = useRef(0)
 
@@ -339,7 +300,6 @@ function Band ({
       dragOffset.current = new THREE.Vector3().copy(hit.point).sub(vec.copy(card.current.translation()))
       setDragging(true)
       document.body.style.cursor = 'grabbing'
-      // While holding the card, don't let the page scroll (touch) or select text.
       document.body.style.touchAction = 'none'
       document.body.style.userSelect = 'none'
     }
