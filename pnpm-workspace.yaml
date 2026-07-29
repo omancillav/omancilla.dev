@@ -2,3 +2,6 @@ allowBuilds:
   '@tailwindcss/oxide': false
   esbuild: false
   sharp: false
+
+overrides:
+  vite: ^6.4.3
