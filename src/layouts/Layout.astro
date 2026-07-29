@@ -39,7 +39,7 @@ const lang = getLangFromUrl(Astro.url)
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body class="relative bg-slate-100 text-slate-950 transition-colors duration-300">
+  <body class="relative isolate bg-slate-100 text-slate-950 transition-colors duration-300">
     <Analytics debug={false} />
     <div
       class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-sky-50
@@ -89,10 +89,12 @@ const lang = getLangFromUrl(Astro.url)
 
   html {
     color-scheme: light;
+    background-color: #f8fafc;
   }
 
   html.dark {
     color-scheme: dark;
+    background-color: #020617;
   }
 
   @media (prefers-reduced-motion: reduce) {
