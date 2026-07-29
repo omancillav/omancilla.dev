@@ -24,6 +24,7 @@ IMPORTANT: Never create commits, PRs, or push autonomously. Only when explicitly
 
 - Branches: `feature/`, `fix/`, `chore/`.
 - Conventional Commits: `feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, etc.
+- Commit messages must be written in English.
 
 ## Session Memory
 
