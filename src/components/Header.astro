@@ -12,20 +12,21 @@ const otherLang = lang === 'es' ? 'en' : 'es'
 const t = useTranslations(lang)
 ---
 
-<header class="fixed top-4 inset-x-4 z-50 flex justify-center">
+<header class="fixed top-4 inset-x-4 z-50 flex max-[389px]:justify-end min-[390px]:justify-center">
   <div class="relative">
     <nav
       class="flex flex-row items-center gap-3 px-4 pr-3 py-2 rounded-full
-      max-[360px]:gap-2 max-[360px]:px-3 max-[360px]:pr-2 max-[360px]:py-1.5 md:gap-5 md:px-5 md:pr-5 md:py-1 md:leading-none
+      max-[389px]:size-10 max-[389px]:justify-center max-[389px]:p-0
+      md:gap-5 md:px-5 md:pr-5 md:py-1 md:leading-none
       bg-white/55 backdrop-blur-xl backdrop-saturate-200 border border-white/5 shadow-[0_10px_35px_rgba(15,23,42,0.16),inset_0_1px_0_rgba(255,255,255,0.82)]
-      text-[14px] max-[360px]:text-[13px] text-slate-700 hover:text-slate-950
+      text-[14px] text-slate-700 hover:text-slate-950
       dark:bg-white/[0.08] dark:backdrop-saturate-100 dark:border-white/15 dark:shadow-[0_10px_35px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.18)] dark:text-white/90 dark:hover:text-white"
     >
-      <a href="#inicio" class="transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.home')} </a>
-      <a href="#experience" class="transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.experience')} </a>
-      <a href="#projects" class="transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.projects')} </a>
-      <a href="#stack" class="transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.stack')} </a>
-      <span aria-hidden="true" class="h-4 max-[360px]:h-3.5 w-px bg-slate-900/15 dark:bg-white/15"></span>
+      <a href="#inicio" class="max-[389px]:hidden transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.home')} </a>
+      <a href="#experience" class="max-[389px]:hidden transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.experience')} </a>
+      <a href="#projects" class="max-[389px]:hidden transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.projects')} </a>
+      <a href="#stack" class="max-[389px]:hidden transition-colors duration-200 font-medium whitespace-nowrap"> {t('nav.stack')} </a>
+      <span aria-hidden="true" class="max-[389px]:hidden h-4 w-px bg-slate-900/15 dark:bg-white/15"></span>
 
       <div class="hidden md:flex items-center gap-2">
         <LanguageToggle />
@@ -38,11 +39,11 @@ const t = useTranslations(lang)
         aria-label={t('nav.settings')}
         aria-haspopup="true"
         aria-expanded="false"
-        class="md:hidden grid size-6 max-[360px]:size-5 place-items-center text-slate-800 transition hover:scale-110 hover:text-slate-950
+        class="md:hidden grid size-6 place-items-center text-slate-800 transition hover:scale-110 hover:text-slate-950
         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500
         dark:text-white dark:hover:text-white"
       >
-        <MenuIcon class="size-4.5 max-[360px]:size-4" aria-hidden="true" />
+        <MenuIcon class="size-4.5" aria-hidden="true" />
       </button>
     </nav>
 
