@@ -30,7 +30,7 @@ interface CardGLTFResult {
   }
 }
 
-interface LanyardProps {
+export interface LanyardProps {
   position?: [number, number, number]
   gravity?: [number, number, number]
   fov?: number

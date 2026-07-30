@@ -16,6 +16,7 @@ export function getLocalizedPath (url: URL, lang: Lang): string {
   const currentLang = getLangFromUrl(url)
   const path = url.pathname.replace(new RegExp(`^/${currentLang}(/|$)`), '/')
   const cleanPath = path === '/' ? '' : path
+  const localizedPath = lang === defaultLang ? cleanPath || '/' : `/${lang}${cleanPath || '/'}`
 
-  return lang === defaultLang ? `${cleanPath}${url.hash}` || '/' : `/${lang}${cleanPath}${url.hash}`
+  return `${localizedPath}${url.hash}`
 }

@@ -8,7 +8,7 @@ import LinkedInIcon from '@/assets/LinkedIn.astro'
 import MailIcon from '@/assets/Mail.astro'
 import ArrowDownIcon from '@/assets/ArrowDown.astro'
 import SocialPill from '@/components/Pill.astro'
-import Lanyard from '@/components/react/Lanyard'
+import LanyardLoader from '@/components/react/LanyardLoader'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 
 const lang = getLangFromUrl(Astro.url)
@@ -76,8 +76,8 @@ const t = useTranslations(lang)
   </div>
 
   <div class="hidden md:block md:absolute md:inset-y-0 md:left-[calc(50%-50vw)] md:w-screen z-40">
-    <Lanyard
-      client:only="react"
+    <LanyardLoader
+      client:media="(min-width: 768px)"
       frontImage="/logo.webp"
       imageFit="contain"
       frontUsername="@omancilla"
