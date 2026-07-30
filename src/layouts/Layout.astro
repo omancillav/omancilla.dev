@@ -14,7 +14,7 @@ const canonicalUrl = new URL(Astro.url.pathname, site)
 const spanishUrl = new URL(getLocalizedPath(Astro.url, 'es'), site)
 const englishUrl = new URL(getLocalizedPath(Astro.url, 'en'), site)
 const profileImageUrl = new URL(AvatarLight.src, site)
-const socialImageUrl = new URL(lang === 'es' ? '/og-image.png' : '/og-image-en.png', site)
+const socialImageUrl = new URL(lang === 'es' ? '/og-image.png?v=2' : '/og-image-en.png?v=2', site)
 const ogLocale = lang === 'es' ? 'es_MX' : 'en_US'
 const alternateOgLocale = lang === 'es' ? 'en_US' : 'es_MX'
 const role = lang === 'es' ? 'Desarrollador FullStack' : 'FullStack Developer'
