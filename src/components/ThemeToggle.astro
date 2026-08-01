@@ -20,11 +20,22 @@ const t = useTranslations(lang)
 </button>
 
 <script>
+function toggleTheme () {
+  const root = document.documentElement
+  const isDark = root.classList.toggle('dark')
+  localStorage.setItem('theme', isDark ? 'dark' : 'light')
+}
+
 document.querySelectorAll('[data-theme-toggle]').forEach((toggle) => {
-  toggle.addEventListener('click', () => {
-    const root = document.documentElement
-    const isDark = root.classList.toggle('dark')
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
-  })
+  toggle.addEventListener('click', toggleTheme)
+})
+
+document.addEventListener('keydown', (event) => {
+  const target = event.target
+  const isEditing = target instanceof HTMLElement &&
+    (target.isContentEditable || ['INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName))
+
+  if (event.key.toLowerCase() !== 't' || event.repeat || event.altKey || event.ctrlKey || event.metaKey || isEditing) return
+  toggleTheme()
 })
 </script>
