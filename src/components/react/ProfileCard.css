@@ -14,10 +14,10 @@
   --behind-glow-color: rgba(14, 165, 233, 0.62);
   --behind-glow-size: 50%;
   --inner-gradient:
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.72), transparent 48%),
-    linear-gradient(145deg, rgba(219, 234, 254, 0.98) 0%, rgba(186, 230, 253, 0.96) 52%, rgba(191, 219, 254, 0.98) 100%);
-  --card-background: rgba(219, 234, 254, 0.98);
-  --card-border: rgba(14, 116, 144, 0.28);
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.68), transparent 48%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.26) 0%, rgba(186, 230, 253, 0.18) 52%, rgba(147, 197, 253, 0.24) 100%);
+  --card-background: rgba(255, 255, 255, 0.3);
+  --card-border: rgba(255, 255, 255, 0.58);
   --card-shadow: rgba(30, 64, 175, 0.2);
   --heading-gradient: linear-gradient(to bottom, #0f172a, #1d4ed8);
   --role-gradient: linear-gradient(to bottom, #334155, #0369a1);
@@ -32,10 +32,10 @@
 
 .dark .pc-card-wrapper {
   --inner-gradient:
-    radial-gradient(circle at 50% 0%, rgba(125, 211, 252, 0.16), transparent 48%),
-    linear-gradient(145deg, rgba(38, 52, 86, 0.98) 0%, rgba(22, 38, 76, 0.98) 52%, rgba(11, 23, 52, 0.99) 100%);
-  --card-background: rgba(11, 23, 52, 0.98);
-  --card-border: rgba(125, 211, 252, 0.22);
+    radial-gradient(circle at 50% 0%, rgba(125, 211, 252, 0.14), transparent 48%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(56, 189, 248, 0.035) 52%, rgba(15, 23, 42, 0.12) 100%);
+  --card-background: rgba(255, 255, 255, 0.075);
+  --card-border: rgba(255, 255, 255, 0.16);
   --card-shadow: rgba(2, 6, 23, 0.45);
   --heading-gradient: linear-gradient(to bottom, #fff, #6f6fbe);
   --role-gradient: linear-gradient(to bottom, #fff, #4a4ac0);
@@ -84,9 +84,10 @@
   border: 1px solid var(--card-border);
   border-radius: var(--card-radius);
   background: var(--card-background);
+  backdrop-filter: blur(24px) saturate(1.8);
   box-shadow:
     0 24px 60px var(--card-shadow),
-    0 0 0 1px rgba(125, 211, 252, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.68),
     rgba(15, 23, 42, 0.35) calc((var(--pointer-from-left) * 10px) - 3px)
     calc((var(--pointer-from-top) * 20px) - 6px) 24px -5px;
   backface-visibility: hidden;
@@ -113,8 +114,16 @@
 .pc-inside {
   position: absolute;
   inset: 0;
-  background-color: var(--card-background);
   background-image: var(--inner-gradient);
+}
+
+.dark .pc-card {
+  backdrop-filter: blur(24px) saturate(1.25);
+  box-shadow:
+    0 24px 60px var(--card-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    rgba(15, 23, 42, 0.35) calc((var(--pointer-from-left) * 10px) - 3px)
+    calc((var(--pointer-from-top) * 20px) - 6px) 24px -5px;
 }
 
 .pc-shine,
@@ -126,22 +135,22 @@
   background-image:
     repeating-linear-gradient(
       0deg,
-      hsl(2, 100%, 73%) calc(var(--space) * 1),
-      hsl(53, 100%, 69%) calc(var(--space) * 2),
-      hsl(93, 100%, 69%) calc(var(--space) * 3),
-      hsl(176, 100%, 76%) calc(var(--space) * 4),
-      hsl(228, 100%, 74%) calc(var(--space) * 5),
-      hsl(283, 100%, 73%) calc(var(--space) * 6),
-      hsl(2, 100%, 73%) calc(var(--space) * 7)
+      hsl(199, 92%, 66%) calc(var(--space) * 1),
+      hsl(213, 94%, 68%) calc(var(--space) * 2),
+      hsl(224, 90%, 72%) calc(var(--space) * 3),
+      hsl(190, 90%, 68%) calc(var(--space) * 4),
+      hsl(208, 96%, 65%) calc(var(--space) * 5),
+      hsl(231, 84%, 72%) calc(var(--space) * 6),
+      hsl(199, 92%, 66%) calc(var(--space) * 7)
     ),
     repeating-linear-gradient(
       var(--angle),
-      #0e152e 0%,
-      hsl(180, 10%, 60%) 3.8%,
-      hsl(180, 29%, 66%) 4.5%,
-      hsl(180, 10%, 60%) 5.2%,
-      #0e152e 10%,
-      #0e152e 12%
+      #172554 0%,
+      hsl(213, 72%, 62%) 3.8%,
+      hsl(199, 84%, 70%) 4.5%,
+      hsl(213, 72%, 62%) 5.2%,
+      #172554 10%,
+      #172554 12%
     ),
     radial-gradient(
       farthest-corner circle at var(--pointer-x) var(--pointer-y),
@@ -164,7 +173,7 @@
   mask-position: top calc(200% - (var(--background-y) * 5)) left calc(65% - var(--background-x));
   mask-size: 150%;
   mix-blend-mode: color-dodge;
-  filter: brightness(0.72) contrast(1.3) saturate(0.42) opacity(0.4);
+  filter: brightness(0.76) contrast(1.24) saturate(0.62) opacity(0.4);
   animation: pc-holo-background 18s linear infinite;
   transition: filter 0.8s ease;
 }
@@ -212,7 +221,7 @@
 
 .pc-card:hover .pc-shine,
 .pc-card.active .pc-shine {
-  filter: brightness(0.8) contrast(1.35) saturate(0.52) opacity(0.5);
+  filter: brightness(0.84) contrast(1.3) saturate(0.7) opacity(0.5);
   animation-play-state: paused;
 }
 
