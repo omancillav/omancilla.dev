@@ -33,8 +33,12 @@ export default [
         window: 'readonly',
         document: 'readonly',
         Element: 'readonly',
+        HTMLDivElement: 'readonly',
+        HTMLElement: 'readonly',
         HTMLImageElement: 'readonly',
-        PointerEvent: 'readonly'
+        PointerEvent: 'readonly',
+        DeviceOrientationEvent: 'readonly',
+        DeviceMotionEvent: 'readonly'
       }
     }
   },

@@ -1,77 +1,63 @@
 ---
-import { Image } from 'astro:assets'
-import AvatarDark from '@/assets/img/avatar.webp'
-import AvatarLight from '@/assets/img/avatar-light.webp'
 import Badge from '@/components/Badge.astro'
 import GitHubIcon from '@/assets/GitHub.astro'
 import LinkedInIcon from '@/assets/LinkedIn.astro'
 import MailIcon from '@/assets/Mail.astro'
 import ArrowDownIcon from '@/assets/ArrowDown.astro'
 import SocialPill from '@/components/Pill.astro'
+import ProfileCard from '@/components/react/ProfileCard'
 import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
-<div class="w-full">
-  <div class="relative z-10 w-full">
-    <div class="flex items-center gap-6 md:gap-8 mb-6" data-reveal="zoom" style="--reveal-delay: 0">
-      <div class="relative size-26 md:size-32 my-auto isolate shrink-0">
-        <div
-          aria-hidden="true"
-          class="pointer-events-none absolute -inset-1 md:-inset-1.5 -z-10 rounded-full opacity-25 blur-lg bg-[conic-gradient(from_0deg,var(--color-sky-500),var(--color-sky-400),var(--color-yellow-200),var(--color-sky-400),var(--color-sky-600),var(--color-sky-500))] motion-safe:animate-[spin_8s_linear_infinite] dark:opacity-40"
-        >
-        </div>
-        <Image
-          src={AvatarLight}
-          alt="Avatar omancilla"
-          class="rounded-full size-full absolute inset-0 transition-opacity duration-500 ease-in-out opacity-100 dark:opacity-0"
-          decoding="async"
-          loading="eager"
-          width={500}
-          height={500}
-          format="webp"
-        />
-        <Image
-          src={AvatarDark}
-          alt="Avatar omancilla"
-          class="rounded-full size-full absolute inset-0 transition-opacity duration-500 ease-in-out opacity-0 dark:opacity-100"
-          decoding="async"
-          loading="eager"
-          width={500}
-          height={500}
-          format="webp"
-        />
-      </div>
-      <div data-reveal style="--reveal-delay: 0">
+<div class="w-full pb-20 md:pb-12">
+  <div class="relative z-10 grid w-full items-center gap-12 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_320px]">
+    <div>
+      <div class="mb-6" data-reveal="zoom" style="--reveal-delay: 0">
         <Badge>{t('hero.badge')}</Badge>
       </div>
+      <h1 class="text-slate-950 dark:text-white text-3xl md:text-5xl font-bold" data-reveal style="--reveal-delay: 100">
+        {t('hero.greeting')} <span class="text-sky-600 dark:text-sky-400/85">Omar Mancilla</span>
+      </h1>
+      <h2 class="mt-4 text-[1.3rem] text-slate-700 text-pretty md:text-xl dark:text-white dark:opacity-80" data-reveal style="--reveal-delay: 200">
+        <span class="text-yellow-500 dark:text-yellow-200">{t('hero.experience')}</span>{t('hero.student')}
+        <span class="text-emerald-600 dark:text-green-300">{t('hero.country')}</span>
+        <span class="opacity-85">
+          {t('hero.focus')}
+        </span>
+      </h2>
+      <nav class="flex gap-x-2 gap-y-3 md:gap-x-4 md:gap-y-4 mt-8 flex-wrap" data-reveal style="--reveal-delay: 300">
+        <SocialPill href="https://github.com/omancillav">
+          <GitHubIcon class="size-4 md:size-5" />
+          GitHub
+        </SocialPill>
+        <SocialPill href="https://www.linkedin.com/in/omancilla">
+          <LinkedInIcon class="size-4 md:size-5" />
+          LinkedIn
+        </SocialPill>
+        <SocialPill href="mailto:contacto@omancilla.dev">
+          <MailIcon class="size-4 md:size-5" />
+          {t('hero.contact')}
+        </SocialPill>
+      </nav>
     </div>
-    <h1 class="text-slate-950 dark:text-white text-3xl md:text-5xl font-bold" data-reveal style="--reveal-delay: 100">
-      {t('hero.greeting')} <span class="text-sky-600 dark:text-sky-400/85">Omar Mancilla</span>
-    </h1>
-    <h2 class="mt-4 text-xl text-slate-700 text-pretty dark:text-white dark:opacity-80" data-reveal style="--reveal-delay: 200">
-      <span class="text-yellow-500 dark:text-yellow-200">{t('hero.experience')}</span>{t('hero.student')}
-      <span class="text-emerald-600 dark:text-green-300">{t('hero.country')}</span>
-      <span class="opacity-85">
-        {t('hero.focus')}
-      </span>
-    </h2>
-    <nav class="flex gap-x-2 gap-y-3 md:gap-x-4 md:gap-y-4 mt-8 flex-wrap" data-reveal style="--reveal-delay: 300">
-      <SocialPill href="https://github.com/omancillav">
-        <GitHubIcon class="size-4 md:size-5" />
-        GitHub
-      </SocialPill>
-      <SocialPill href="https://www.linkedin.com/in/omancilla">
-        <LinkedInIcon class="size-4 md:size-5" />
-        LinkedIn
-      </SocialPill>
-      <SocialPill href="mailto:contacto@omancilla.dev">
-        <MailIcon class="size-4 md:size-5" />
-        {t('hero.contact')}
-      </SocialPill>
-    </nav>
+
+    <div class="flex justify-center md:justify-end" data-reveal="right" style="--reveal-delay: 150">
+      <ProfileCard
+        client:visible
+        avatarUrl="/assets/profile-card/avatar-cutout.webp"
+        iconUrl="/assets/profile-card/icon-pattern.png"
+        grainUrl="/assets/profile-card/grain.webp"
+        name="Omar Mancilla"
+        title={t('hero.badge')}
+        showUserInfo={false}
+        enableTouchTilt={true}
+        enableMobileTilt={false}
+        className="w-[min(72vw,260px)] md:w-[280px] lg:w-[320px]"
+      />
+    </div>
   </div>
 
   <a

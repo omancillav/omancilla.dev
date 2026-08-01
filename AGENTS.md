@@ -14,6 +14,11 @@ IMPORTANT: Never create commits, PRs, or push autonomously. Only when explicitly
   a comment explaining WHAT the code does.
 - After every code change, run `pnpm lint:fix`, then fix remaining issues manually.
 - After every code change, run `pnpm check` (TypeScript/Astro diagnostics) and fix any errors.
+- Never start a development server, preview server, file watcher, browser, or other
+  long-running process without the user's explicit authorization.
+- Never leave processes started during the session running. Before finishing,
+  being interrupted, or switching tasks, stop them and verify that their processes
+  and listening ports are gone.
 
 ## Out of Scope
 
