@@ -11,6 +11,7 @@ interface ProfileCardProps {
   behindGlowSize?: string
   className?: string
   enableTilt?: boolean
+  enableTouchTilt?: boolean
   enableMobileTilt?: boolean
   mobileTiltSensitivity?: number
   miniAvatarUrl?: string
@@ -50,6 +51,7 @@ function ProfileCardComponent ({
   behindGlowSize = '50%',
   className = '',
   enableTilt = true,
+  enableTouchTilt = true,
   enableMobileTilt = false,
   mobileTiltSensitivity = 5,
   miniAvatarUrl,
@@ -65,6 +67,7 @@ function ProfileCardComponent ({
   const shellRef = useRef<HTMLDivElement>(null)
   const enterTimerRef = useRef<number | null>(null)
   const leaveFrameRef = useRef<number | null>(null)
+  const activePointerRef = useRef<number | null>(null)
 
   const tiltEngine = useMemo<TiltEngine | null>(() => {
     if (!enableTilt) return null
@@ -202,6 +205,36 @@ function ProfileCardComponent ({
     leaveFrameRef.current = window.requestAnimationFrame(checkSettle)
   }, [tiltEngine])
 
+  const handleTouchPointerDown = useCallback((event: PointerEvent) => {
+    const shell = shellRef.current
+    if (!shell || !tiltEngine || !event.isPrimary) return
+
+    activePointerRef.current = event.pointerId
+    shell.setPointerCapture(event.pointerId)
+    shell.classList.add('active', 'entering')
+    if (enterTimerRef.current) window.clearTimeout(enterTimerRef.current)
+    enterTimerRef.current = window.setTimeout(() => shell.classList.remove('entering'), 180)
+    const { x, y } = getOffsets(event, shell)
+    tiltEngine.setTarget(x, y)
+  }, [getOffsets, tiltEngine])
+
+  const handleTouchPointerMove = useCallback((event: PointerEvent) => {
+    const shell = shellRef.current
+    if (!shell || !tiltEngine || activePointerRef.current !== event.pointerId) return
+
+    const { x, y } = getOffsets(event, shell)
+    tiltEngine.setTarget(x, y)
+  }, [getOffsets, tiltEngine])
+
+  const handleTouchPointerEnd = useCallback((event: PointerEvent) => {
+    const shell = shellRef.current
+    if (!shell || activePointerRef.current !== event.pointerId) return
+
+    activePointerRef.current = null
+    if (shell.hasPointerCapture(event.pointerId)) shell.releasePointerCapture(event.pointerId)
+    handlePointerLeave()
+  }, [handlePointerLeave])
+
   const handleDeviceOrientation = useCallback((event: DeviceOrientationEvent) => {
     const shell = shellRef.current
     if (!shell || !tiltEngine || event.beta == null || event.gamma == null) return
@@ -220,6 +253,11 @@ function ProfileCardComponent ({
       shell.addEventListener('pointerenter', handlePointerEnter)
       shell.addEventListener('pointermove', handlePointerMove)
       shell.addEventListener('pointerleave', handlePointerLeave)
+    } else if (enableTouchTilt) {
+      shell.addEventListener('pointerdown', handleTouchPointerDown)
+      shell.addEventListener('pointermove', handleTouchPointerMove)
+      shell.addEventListener('pointerup', handleTouchPointerEnd)
+      shell.addEventListener('pointercancel', handleTouchPointerEnd)
     }
 
     const enableOrientation = async () => {
@@ -248,14 +286,30 @@ function ProfileCardComponent ({
       shell.removeEventListener('pointerenter', handlePointerEnter)
       shell.removeEventListener('pointermove', handlePointerMove)
       shell.removeEventListener('pointerleave', handlePointerLeave)
+      shell.removeEventListener('pointerdown', handleTouchPointerDown)
+      shell.removeEventListener('pointermove', handleTouchPointerMove)
+      shell.removeEventListener('pointerup', handleTouchPointerEnd)
+      shell.removeEventListener('pointercancel', handleTouchPointerEnd)
       shell.removeEventListener('click', enableOrientation)
       window.removeEventListener('deviceorientation', handleDeviceOrientation)
       if (enterTimerRef.current) window.clearTimeout(enterTimerRef.current)
       if (leaveFrameRef.current) window.cancelAnimationFrame(leaveFrameRef.current)
       tiltEngine.cancel()
+      activePointerRef.current = null
       shell.classList.remove('active', 'entering')
     }
-  }, [enableMobileTilt, handleDeviceOrientation, handlePointerEnter, handlePointerLeave, handlePointerMove, tiltEngine])
+  }, [
+    enableMobileTilt,
+    enableTouchTilt,
+    handleDeviceOrientation,
+    handlePointerEnter,
+    handlePointerLeave,
+    handlePointerMove,
+    handleTouchPointerDown,
+    handleTouchPointerEnd,
+    handleTouchPointerMove,
+    tiltEngine
+  ])
 
   const cardStyle = useMemo(() => ({
     '--icon': iconUrl ? `url(${iconUrl})` : 'none',
