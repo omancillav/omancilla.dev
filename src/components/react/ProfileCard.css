@@ -19,10 +19,20 @@
   --card-background: rgba(255, 255, 255, 0.3);
   --card-border: rgba(255, 255, 255, 0.58);
   --card-shadow: rgba(30, 64, 175, 0.2);
-  --heading-gradient: linear-gradient(to bottom, #0f172a, #1d4ed8);
-  --role-gradient: linear-gradient(to bottom, #334155, #0369a1);
+  --heading-gradient: linear-gradient(to bottom, #1e3a8a, #0369a1);
+  --role-gradient: linear-gradient(to bottom, #1e40af, #0284c7);
   --glare-start: hsla(199, 90%, 82%, 0.85);
   --glare-end: hsla(217, 70%, 62%, 0.55);
+  --icon-deep: hsl(217, 91%, 60%);
+  --icon-mid: hsl(213, 94%, 68%);
+  --icon-highlight: hsl(199, 92%, 72%);
+  --icon-mix-blend: soft-light;
+  --icon-filter: brightness(0.96) contrast(1) saturate(0.85) opacity(0.34);
+  --icon-hover-filter: brightness(1) contrast(1.04) saturate(0.95) opacity(0.43);
+  --icon-before-blend: soft-light;
+  --icon-after-blend: soft-light;
+  --icon-before-opacity: 0.14;
+  --icon-after-opacity: 0.07;
   --card-radius: 30px;
   position: relative;
   perspective: 500px;
@@ -37,10 +47,20 @@
   --card-background: rgba(255, 255, 255, 0.075);
   --card-border: rgba(255, 255, 255, 0.16);
   --card-shadow: rgba(2, 6, 23, 0.45);
-  --heading-gradient: linear-gradient(to bottom, #fff, #6f6fbe);
-  --role-gradient: linear-gradient(to bottom, #fff, #4a4ac0);
+  --heading-gradient: linear-gradient(to bottom, #f8fafc, #60a5fa);
+  --role-gradient: linear-gradient(to bottom, #dbeafe, #38bdf8);
   --glare-start: hsl(199, 72%, 86%);
   --glare-end: hsla(207, 55%, 28%, 0.8);
+  --icon-deep: #172554;
+  --icon-mid: hsl(213, 72%, 62%);
+  --icon-highlight: hsl(199, 84%, 70%);
+  --icon-mix-blend: color-dodge;
+  --icon-filter: brightness(0.76) contrast(1.24) saturate(0.62) opacity(0.4);
+  --icon-hover-filter: brightness(0.84) contrast(1.3) saturate(0.7) opacity(0.5);
+  --icon-before-blend: luminosity;
+  --icon-after-blend: difference;
+  --icon-before-opacity: 0.42;
+  --icon-after-opacity: 0.22;
 }
 
 .pc-behind {
@@ -145,12 +165,12 @@
     ),
     repeating-linear-gradient(
       var(--angle),
-      #172554 0%,
-      hsl(213, 72%, 62%) 3.8%,
-      hsl(199, 84%, 70%) 4.5%,
-      hsl(213, 72%, 62%) 5.2%,
-      #172554 10%,
-      #172554 12%
+      var(--icon-deep) 0%,
+      var(--icon-mid) 3.8%,
+      var(--icon-highlight) 4.5%,
+      var(--icon-mid) 5.2%,
+      var(--icon-deep) 10%,
+      var(--icon-deep) 12%
     ),
     radial-gradient(
       farthest-corner circle at var(--pointer-x) var(--pointer-y),
@@ -172,8 +192,8 @@
   mask-repeat: repeat;
   mask-position: top calc(200% - (var(--background-y) * 5)) left calc(65% - var(--background-x));
   mask-size: 150%;
-  mix-blend-mode: color-dodge;
-  filter: brightness(0.76) contrast(1.24) saturate(0.62) opacity(0.4);
+  mix-blend-mode: var(--icon-mix-blend);
+  filter: var(--icon-filter);
   animation: pc-holo-background 18s linear infinite;
   transition: filter 0.8s ease;
 }
@@ -201,7 +221,7 @@
     100% 100%,
     220px 220px;
   background-blend-mode: color-dodge;
-  mix-blend-mode: luminosity;
+  mix-blend-mode: var(--icon-before-blend);
   filter: brightness(calc(2 - var(--pointer-from-center))) contrast(calc(var(--pointer-from-center) + 2))
     saturate(calc(0.5 + var(--pointer-from-center)));
 }
@@ -215,24 +235,24 @@
     200% 300%,
     700% 700%,
     100% 100%;
-  mix-blend-mode: difference;
+  mix-blend-mode: var(--icon-after-blend);
   filter: brightness(0.8) contrast(1.5);
 }
 
 .pc-card:hover .pc-shine,
 .pc-card.active .pc-shine {
-  filter: brightness(0.84) contrast(1.3) saturate(0.7) opacity(0.5);
+  filter: var(--icon-hover-filter);
   animation-play-state: paused;
 }
 
 .pc-card:hover .pc-shine::before,
 .pc-card.active .pc-shine::before {
-  opacity: 0.35;
+  opacity: var(--icon-before-opacity);
 }
 
 .pc-card:hover .pc-shine::after,
 .pc-card.active .pc-shine::after {
-  opacity: 0.22;
+  opacity: var(--icon-after-opacity);
 }
 
 .pc-glare {
