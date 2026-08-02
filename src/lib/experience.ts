@@ -1,25 +1,25 @@
 export const EXPERIENCE = [
-  // {
-  //   title: {
-  //     es: 'Desarrollador Jr - Vlim',
-  //     en: 'Jr Developer - Vlim'
-  //   },
-  //   date: 'Mayo 2026 - Actualidad',
-  //   description: {
-  //     es: 'Implementación de sistemas basados en microservicios utilizando Moleculer, con patrones de comunicación asincrónica y orquestación de servicios, junto con desarrollo de dashboards e interfaces de usuario responsivas con React.',
-  //     en: 'Implementation of microservices-based systems using Moleculer, with asynchronous communication patterns and service orchestration, along with the development of dashboards and responsive user interfaces with React.'
-  //   },
-  //   link: 'https://www.vlim.com.mx/'
-  // },
+  {
+    title: {
+      es: 'Desarrollador de Software - Vlim',
+      en: 'Software Developer - Vlim'
+    },
+    date: 'Mayo 2026 - Agosto 2026',
+    description: {
+      es: 'Desarrollo de soluciones de consultoría para distintos clientes y stacks tecnológicos, destacando un servicio de prueba de vida y validación de identidad con Google Vision API, ML Kit y MediaPipe sobre Google Cloud (Cloud Run, Cloud SQL); mantenimiento correctivo y evolutivo de sistemas en producción.',
+      en: 'Development of consulting solutions for different clients and technology stacks, highlighting a liveness detection and identity validation service with Google Vision API, ML Kit, and MediaPipe on Google Cloud (Cloud Run, Cloud SQL); corrective and evolutionary maintenance of production systems.'
+    },
+    link: 'https://www.vlim.com.mx/'
+  },
   {
     title: {
       es: 'Desarrollador FullStack - WhatsBotSm',
       en: 'FullStack Developer - WhatsBotSm'
     },
-    date: 'Septiembre 2024 - Abril 2026',
+    date: 'Agosto 2024 - Abril 2026',
     description: {
-      es: 'Desarrollo de APIs RESTful con Node.js y Express, integración de bases de datos NoSQL (Firebase) y SQL (PostgreSQL), y creación de dashboards e interfaces de usuario responsivas con React.',
-      en: 'Development of RESTful APIs with Node.js and Express, integration of NoSQL (Firebase) and SQL (PostgreSQL) databases, and creation of dashboards and responsive user interfaces with React.'
+      es: 'Desarrollo y mantenimiento de APIs RESTful con Node.js y Express, y de un dashboard en React para la configuración y operación de un bot de WhatsApp; administración de base de datos en producción y colaboración en despliegues mediante pipelines con Jenkins.',
+      en: 'Development and maintenance of RESTful APIs with Node.js and Express, and of a React dashboard for configuring and operating a WhatsApp bot; production database administration and collaboration on deployments through Jenkins pipelines.'
     },
     link: 'https://whatsbotsm.com'
   }
