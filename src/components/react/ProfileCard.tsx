@@ -98,8 +98,8 @@ function ProfileCardComponent ({
         '--pointer-from-center': `${clamp(Math.hypot(centerY, centerX) / 50, 0, 1)}`,
         '--pointer-from-top': `${percentY / 100}`,
         '--pointer-from-left': `${percentX / 100}`,
-        '--rotate-x': `${round(-(centerX / 4))}deg`,
-        '--rotate-y': `${round(centerY / 3.2)}deg`
+        '--rotate-x': `${round(-(centerX / 3.3))}deg`,
+        '--rotate-y': `${round(centerY / 2.65)}deg`
       }
 
       Object.entries(variables).forEach(([property, value]) => wrapper.style.setProperty(property, value))
