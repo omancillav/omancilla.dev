@@ -17,7 +17,10 @@ const profileImageUrl = new URL(AvatarLight.src, site)
 const socialImageUrl = new URL(lang === 'es' ? '/og-image.png?v=2' : '/og-image-en.png?v=2', site)
 const ogLocale = lang === 'es' ? 'es_MX' : 'en_US'
 const alternateOgLocale = lang === 'es' ? 'en_US' : 'es_MX'
-const role = lang === 'es' ? 'Desarrollador FullStack' : 'FullStack Developer'
+const role = lang === 'es' ? 'Desarrollador Full Stack' : 'Full Stack Developer'
+const specialties = lang === 'es'
+  ? ['Desarrollo Full Stack', 'Desarrollo web', 'Desarrollo de aplicaciones móviles']
+  : ['Full Stack Development', 'Web Development', 'Mobile Application Development']
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -46,7 +49,9 @@ const structuredData = {
       alternateName: '@omancilla',
       url: site.href,
       image: profileImageUrl.href,
+      description,
       jobTitle: role,
+      knowsAbout: specialties,
       homeLocation: {
         '@type': 'Country',
         name: lang === 'es' ? 'México' : 'Mexico'
