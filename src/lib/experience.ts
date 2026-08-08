@@ -16,8 +16,8 @@ export const EXPERIENCE = [
   },
   {
     title: {
-      es: 'Desarrollador FullStack - WhatsBotSm',
-      en: 'FullStack Developer - WhatsBotSm'
+      es: 'Desarrollador Full Stack - WhatsBotSm',
+      en: 'Full Stack Developer - WhatsBotSm'
     },
     date: {
       es: 'Agosto 2024 - Abril 2026',

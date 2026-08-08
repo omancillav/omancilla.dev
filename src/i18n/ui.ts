@@ -9,9 +9,9 @@ export const defaultLang: Lang = 'es'
 
 export const ui = {
   es: {
-    'site.title': 'Omancilla | Portafolio',
+    'site.title': 'Omar Mancilla | Desarrollador Full Stack',
     'site.description':
-      'Hola, soy Omar Mancilla, un desarrollador web y estudiante de ingeniería en desarrollo de software de México. Me especializo en crear soluciones digitales innovadoras.',
+      'Portafolio de Omar Mancilla, desarrollador Full Stack en México. Conoce su experiencia, proyectos y tecnologías para desarrollo web y móvil.',
     'nav.home': 'Inicio',
     'nav.experience': 'Experiencia',
     'nav.projects': 'Proyectos',
@@ -36,17 +36,18 @@ export const ui = {
     'experience.more': 'Más Información',
     'projects.viewSite': 'Ver sitio',
     'projects.code': 'Código',
+    'projects.screenshotAlt': 'Captura de',
     'stack.frontend': 'Frontend y móvil',
     'stack.backend': 'Backend y desarrollo',
     'stack.database': 'Datos y servicios',
     'stack.tools': 'Cloud y herramientas',
-    'footer.role': 'Desarrollador FullStack',
+    'footer.role': 'Desarrollador Full Stack',
     'footer.rights': '© 2026 Casi todos los derechos reservados.'
   },
   en: {
-    'site.title': 'Omancilla | Portfolio',
+    'site.title': 'Omar Mancilla | Full Stack Developer',
     'site.description':
-      "Hi, I'm Omar Mancilla, a web developer and software development engineering student from Mexico. I specialize in building innovative digital solutions.",
+      'Portfolio of Omar Mancilla, a Full Stack Developer from Mexico. Explore his experience, projects, and web and mobile development stack.',
     'nav.home': 'Home',
     'nav.experience': 'Experience',
     'nav.projects': 'Projects',
@@ -71,11 +72,12 @@ export const ui = {
     'experience.more': 'More Information',
     'projects.viewSite': 'View site',
     'projects.code': 'Code',
+    'projects.screenshotAlt': 'Screenshot of',
     'stack.frontend': 'Frontend & mobile',
     'stack.backend': 'Backend & development',
     'stack.database': 'Data & services',
     'stack.tools': 'Cloud & tools',
-    'footer.role': 'FullStack Developer',
+    'footer.role': 'Full Stack Developer',
     'footer.rights': '© 2026 Almost all rights reserved.'
   }
 } as const

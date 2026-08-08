@@ -325,7 +325,7 @@
   flex-direction: column;
 }
 
-.pc-details h2,
+.pc-details .pc-name,
 .pc-details p {
   width: min-content;
   margin: 0 auto;
@@ -334,7 +334,7 @@
   color: transparent;
 }
 
-.pc-details h2 {
+.pc-details .pc-name {
   background-image: var(--heading-gradient);
   font-size: clamp(1.75rem, 2.5vw, 2rem);
   font-weight: 600;

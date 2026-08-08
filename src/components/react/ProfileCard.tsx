@@ -56,7 +56,7 @@ function ProfileCardComponent ({
   mobileTiltSensitivity = 5,
   miniAvatarUrl,
   name = 'Omar Mancilla',
-  title = 'FullStack Developer',
+  title = 'Full Stack Developer',
   handle = 'omancilla',
   status = 'Online',
   contactText = 'Contact',
@@ -348,7 +348,7 @@ function ProfileCardComponent ({
             </div>
             <div className="pc-content pc-profile-heading">
               <div className="pc-details">
-                <h2>{name}</h2>
+                <div className="pc-name">{name}</div>
                 <p>{title}</p>
               </div>
             </div>
