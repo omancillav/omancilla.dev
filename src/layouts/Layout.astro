@@ -2,6 +2,7 @@
 import '../styles/global.css'
 import '@fontsource-variable/onest'
 import Analytics from '@vercel/analytics/astro'
+import { ClientRouter } from 'astro:transitions'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import { getLangFromUrl, getLocalizedPath } from '@/i18n/utils'
@@ -73,16 +74,20 @@ const structuredData = {
     <link rel="alternate" hreflang="en" href={englishUrl} />
     <link rel="alternate" hreflang="x-default" href={spanishUrl} />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <ClientRouter fallback="swap" />
     <script is:inline>
       ;(function () {
         const mq = window.matchMedia('(prefers-color-scheme: dark)')
 
-        // Carga inicial: respetar localStorage, si no hay valor seguir al sistema
-        const stored = localStorage.getItem('theme')
-        const isDark = stored === 'dark' || (!stored && mq.matches)
-        document.documentElement.classList.toggle('dark', isDark)
+        function applyTheme () {
+          const stored = localStorage.getItem('theme')
+          const isDark = stored === 'dark' || (!stored && mq.matches)
+          document.documentElement.classList.toggle('dark', isDark)
+        }
 
-        // Cambio de tema del OS: sincronizar app y persistir el nuevo valor
+        applyTheme()
+        document.addEventListener('astro:after-swap', applyTheme)
+
         mq.addEventListener('change', (e) => {
           document.documentElement.classList.toggle('dark', e.matches)
           localStorage.setItem('theme', e.matches ? 'dark' : 'light')
@@ -136,8 +141,7 @@ const structuredData = {
     <Footer />
     <script>
       const REVEAL_OPTIONS = { threshold: 0, rootMargin: '0px 0px -5% 0px' }
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      const targets = document.querySelectorAll('[data-reveal]')
+      let revealObserver: IntersectionObserver | undefined
 
       function onIntersect (entries: IntersectionObserverEntry[], observer: IntersectionObserver) {
         entries.forEach((entry) => {
@@ -147,12 +151,39 @@ const structuredData = {
         })
       }
 
-      if (reduceMotion || !('IntersectionObserver' in window)) {
-        targets.forEach((el) => el.classList.add('is-visible'))
-      } else {
-        const observer = new IntersectionObserver(onIntersect, REVEAL_OPTIONS)
-        targets.forEach((el) => observer.observe(el))
+      function initializeReveal () {
+        revealObserver?.disconnect()
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        const targets = document.querySelectorAll('[data-reveal]')
+
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+          targets.forEach((el) => el.classList.add('is-visible'))
+          return
+        }
+
+        revealObserver = new IntersectionObserver(onIntersect, REVEAL_OPTIONS)
+        targets.forEach((el) => revealObserver?.observe(el))
       }
+
+      function preparePageSwap (event: Event) {
+        revealObserver?.disconnect()
+
+        const swapEvent = event as Event & { newDocument: Document }
+        swapEvent.newDocument.documentElement.setAttribute('data-page-swap', '')
+        swapEvent.newDocument.documentElement.classList.toggle('dark', document.documentElement.classList.contains('dark'))
+        swapEvent.newDocument.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-visible'))
+      }
+
+      function finishPageSwap () {
+        requestAnimationFrame(() => {
+          document.documentElement.removeAttribute('data-page-swap')
+        })
+      }
+
+      document.addEventListener('astro:page-load', initializeReveal)
+      document.addEventListener('astro:before-swap', preparePageSwap)
+      document.addEventListener('astro:page-load', finishPageSwap)
     </script>
   </body>
 </html>
@@ -184,5 +215,25 @@ const structuredData = {
     html {
       scroll-behavior: auto;
     }
+  }
+</style>
+
+<style is:global>
+  html[data-page-swap] {
+    scroll-behavior: auto;
+  }
+
+  html[data-page-swap] *,
+  html[data-page-swap] *::before,
+  html[data-page-swap] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  ::view-transition-group(root),
+  ::view-transition-image-pair(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 </style>
