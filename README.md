@@ -11,7 +11,7 @@
     ·
     <a href="https://www.linkedin.com/in/omancilla">LinkedIn</a>
     ·
-    <a href="mailto:contacto@omancilla.dev">Email</a>
+    <a href="mailto:contact@omancilla.dev">Email</a>
   </p>
 </div>
 

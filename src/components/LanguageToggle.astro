@@ -9,6 +9,7 @@ const t = useTranslations(lang)
 
 <a
   href={getLocalizedPath(Astro.url, otherLang)}
+  data-language-toggle
   aria-label={t('nav.language')}
   class="grid size-6 max-[360px]:size-5 md:size-7 place-items-center text-[12px] max-[360px]:text-[11px] md:text-[13px] font-semibold text-slate-800 transition hover:scale-110 hover:text-slate-950
   focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500
@@ -16,3 +17,61 @@ const t = useTranslations(lang)
 >
   {languages[otherLang]}
 </a>
+
+<script>
+const SECTION_IDS = ['inicio', 'experience', 'projects', 'stack']
+let pendingSection: { id: string, offset: number } | undefined
+
+function getActiveSection () {
+  let activeSection = SECTION_IDS[0]
+  let largestVisibleArea = 0
+
+  SECTION_IDS.forEach((id) => {
+    const section = document.getElementById(id)
+    if (!section) return
+
+    const bounds = section.getBoundingClientRect()
+    const visibleArea = Math.max(0, Math.min(bounds.bottom, window.innerHeight) - Math.max(bounds.top, 0))
+
+    if (visibleArea > largestVisibleArea) {
+      largestVisibleArea = visibleArea
+      activeSection = id
+    }
+  })
+
+  const section = document.getElementById(activeSection)
+  const sectionTop = section ? window.scrollY + section.getBoundingClientRect().top : window.scrollY
+
+  return {
+    id: activeSection,
+    offset: window.scrollY - sectionTop
+  }
+}
+
+document.addEventListener('click', (event) => {
+  const target = event.target
+  if (!(target instanceof Element)) return
+
+  const link = target.closest<HTMLAnchorElement>('[data-language-toggle]')
+  if (!link) return
+
+  pendingSection = getActiveSection()
+  const url = new URL(link.href)
+  url.hash = pendingSection.id
+  link.href = url.href
+}, { capture: true })
+
+document.addEventListener('astro:after-swap', () => {
+  if (!pendingSection) return
+
+  const section = document.getElementById(pendingSection.id)
+  if (!section) return
+
+  const sectionTop = window.scrollY + section.getBoundingClientRect().top
+  window.scrollTo({ top: sectionTop + pendingSection.offset, behavior: 'instant' })
+})
+
+document.addEventListener('astro:page-load', () => {
+  pendingSection = undefined
+})
+</script>

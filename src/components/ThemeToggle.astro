@@ -26,9 +26,11 @@ function toggleTheme () {
   localStorage.setItem('theme', isDark ? 'dark' : 'light')
 }
 
-document.querySelectorAll('[data-theme-toggle]').forEach((toggle) => {
-  toggle.addEventListener('click', toggleTheme)
-})
+function initializeThemeToggles () {
+  document.querySelectorAll('[data-theme-toggle]').forEach((toggle) => {
+    toggle.addEventListener('click', toggleTheme)
+  })
+}
 
 document.addEventListener('keydown', (event) => {
   const target = event.target
@@ -38,4 +40,6 @@ document.addEventListener('keydown', (event) => {
   if (event.key.toLowerCase() !== 't' || event.repeat || event.altKey || event.ctrlKey || event.metaKey || isEditing) return
   toggleTheme()
 })
+
+document.addEventListener('astro:page-load', initializeThemeToggles)
 </script>
