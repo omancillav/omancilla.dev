@@ -15,7 +15,6 @@ export const PROJECTS = [
       en: 'Fullstack mobile app built with React Native and Expo to manage a personal book library. It lets you search or log books, organize them by status, track progress, save reviews, and check personal statistics.'
     },
     link: 'https://readdapp.com',
-    github: 'https://github.com/omancillav/readd',
     image: ReaddImage,
     tags: [TAGS.REACT_NATIVE, TAGS.EXPO, TAGS.NODE, TAGS.EXPRESS, TAGS.SUPABASE, TAGS.SUPABASE, TAGS.JWT]
   },
