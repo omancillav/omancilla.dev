@@ -46,18 +46,18 @@ export const PROJECTS = [
     image: VetSyncImage,
     tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.SHADCN, TAGS.SUPABASE, TAGS.NODE, TAGS.EXPRESS, TAGS.JWT]
   },
-  {
-    title: {
-      es: 'Baloo Fotos - Generador de layouts para impresión',
-      en: 'Baloo Fotos - Print layout generator'
-    },
-    description: {
-      es: 'Aplicación web en Next.js para subir, recortar y organizar fotos en layouts listos para impresión. Incluye generador de fotos infantiles, collage automático y personalizado, vista previa en tiempo real, exportación a PDF/PNG/JPG a 300 DPI y opción de compartir archivos desde el navegador.',
-      en: 'Next.js web app to upload, crop, and arrange photos into print-ready layouts. It includes a kids photo generator, automatic and custom collage, real-time preview, PDF/PNG/JPG export at 300 DPI, and the option to share files directly from the browser.'
-    },
-    link: 'https://fotosbaloo.vercel.app',
-    github: 'https://github.com/omancillav/foto-layout',
-    image: BalooImage,
-    tags: [TAGS.NEXT, TAGS.REACT, TAGS.TAILWIND, TAGS.TYPESCRIPT]
-  }
+  // {
+  //   title: {
+  //     es: 'Baloo Fotos - Generador de layouts para impresión',
+  //     en: 'Baloo Fotos - Print layout generator'
+  //   },
+  //   description: {
+  //     es: 'Aplicación web en Next.js para subir, recortar y organizar fotos en layouts listos para impresión. Incluye generador de fotos infantiles, collage automático y personalizado, vista previa en tiempo real, exportación a PDF/PNG/JPG a 300 DPI y opción de compartir archivos desde el navegador.',
+  //     en: 'Next.js web app to upload, crop, and arrange photos into print-ready layouts. It includes a kids photo generator, automatic and custom collage, real-time preview, PDF/PNG/JPG export at 300 DPI, and the option to share files directly from the browser.'
+  //   },
+  //   link: 'https://fotosbaloo.vercel.app',
+  //   github: 'https://github.com/omancillav/foto-layout',
+  //   image: BalooImage,
+  //   tags: [TAGS.NEXT, TAGS.REACT, TAGS.TAILWIND, TAGS.TYPESCRIPT]
+  // }
 ]
